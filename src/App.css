@@ -120,10 +120,22 @@
 
 button {
   cursor: pointer;
+  padding: 12px 15px;
+  border-radius: 7px;
+  font-size: 15px;
+  font-weight: bold;
+  width: 110px;
 }
 
 button[class='prev-step-btn'] {
   float: left;
+  border: 1px solid hsl(0, 0%, 100%);
+  background-color: hsl(0, 0%, 100%);
+  color: hsl(231, 11%, 63%);
+}
+
+button[class='prev-step-btn']:hover {
+  color: hsl(213, 96%, 18%);
 }
 
 button[class='next-step-btn'] {
@@ -131,11 +143,7 @@ button[class='next-step-btn'] {
   border: 1px solid hsl(213, 96%, 18%);
   background-color: hsl(213, 96%, 18%);
   color: hsl(0, 0%, 100%);
-  padding: 12px 15px;
-  border-radius: 7px;
-  font-size: 15px;
-  font-weight: bold;
-  width: 110px;
+
 }
 
 h1, label {

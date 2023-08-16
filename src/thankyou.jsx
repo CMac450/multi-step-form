@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './App.css'
 
-export function Summary({ activeStepIndex, setActiveStepIndex }) {
+export function Thankyou({ activeStepIndex, setActiveStepIndex }) {
 
     const moveToNextStep = (activeStepIndex) => {
         setActiveStepIndex(activeStepIndex + 1);
@@ -15,7 +15,7 @@ export function Summary({ activeStepIndex, setActiveStepIndex }) {
 
     return (
         <>
-            <h1>Step 4</h1>
+            <h1>Step 5</h1>
             <div className='container'>
                 <div className='card'>
                     <div className='card-body'>
@@ -53,21 +53,7 @@ export function Summary({ activeStepIndex, setActiveStepIndex }) {
                             </div>
                         </div>
                         <div className='card-body-right'>
-                            <div className='card-body-right-top'>
-                                <h1>Finishing up</h1>
-                                <p>Please provide your name, email, address, and phone number.</p>
-
-                                <label htmlFor='name' >Name</label>
-                                <input type='text' id='name' placeholder='e.g. Stephen King'></input>
-
-                                <label htmlFor='email'>Email Address</label>
-                                <input type='email' id='email' placeholder='e.g. stephenking@lorem.com'></input>
-
-                                <label htmlFor='phone'>Phone Number</label>
-                                <input type='phone' id='phone' placeholder='e.g. +1 234 567 890'></input>
-
-
-                            </div>
+                            <h1>Thank you!</h1>
                             <div className='card-body-right-bottom'>
                                 <button className='prev-step-btn' label='Next Step' onClick={(e) => {goBackToPreviousStep(activeStepIndex)}}>Go back</button>
                                 <button className='next-step-btn' label='Next Step' onClick={(e) => { moveToNextStep(activeStepIndex) }}>Next Step</button>

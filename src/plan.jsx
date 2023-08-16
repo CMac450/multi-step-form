@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import './plan.css';
 
-export function Plan({ activeStepIndex, setActiveStepIndex }) {
+export function Plan({ activeStepIndex, setActiveStepIndex, setBillingType, setPlanName, setPlanPrice }) {
 
     const moveToNextStep = (activeStepIndex) => {
         setActiveStepIndex(activeStepIndex + 1);
@@ -14,7 +14,9 @@ export function Plan({ activeStepIndex, setActiveStepIndex }) {
 
     const [isToggleChecked, setIsToggleChecked] = useState(false);
 
-    const setBillingType = (val) => {
+    
+    const setMonthlyOrYearly = (val) => {
+        
         // console.log(`e.target.checked: ${val}`); 
         const e1 = document.getElementsByClassName("offer");
         // const e2 = document.getElementsByClassName("price");
@@ -22,6 +24,7 @@ export function Plan({ activeStepIndex, setActiveStepIndex }) {
             setIsToggleChecked(true);
             document.getElementById("yearly-billing").style.color = "hsl(213, 96%, 18%)";
             document.getElementById("monthly-billing").style.color = "hsl(231, 11%, 63%)";
+            setBillingType("Yearly");
 
             for(let i = 0; i < e1.length; i++) {
                 e1[i].style.display = 'inline';
@@ -30,7 +33,8 @@ export function Plan({ activeStepIndex, setActiveStepIndex }) {
             setIsToggleChecked(false);
             document.getElementById("monthly-billing").style.color = "hsl(213, 96%, 18%)";
             document.getElementById("yearly-billing").style.color = "hsl(231, 11%, 63%)";
-           
+            setBillingType("Monthly");
+
             for(let i = 0; i < e1.length; i++) {
                 e1[i].style.display = 'none';
             }
@@ -135,7 +139,7 @@ export function Plan({ activeStepIndex, setActiveStepIndex }) {
                                         {/* <div className='toggle-row'> */}
                                         <p id='monthly-billing'>Monthly</p>
                                         <label className="toggle">
-                                            <input type="checkbox" onClick={(e) => { setBillingType(e.target.checked) }} />
+                                            <input type="checkbox" onClick={(e) => { setMonthlyOrYearly(e.target.checked) }} />
                                             <span className="slider round"></span>
                                         </label>
                                         <p id='yearly-billing'>Yearly</p>

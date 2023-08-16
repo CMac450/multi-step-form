@@ -1,0 +1,82 @@
+#root {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 2rem;
+    text-align: center;
+}
+
+
+/* .card-body-right {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 100px;
+    padding-right: 100px;
+}
+
+.card-body-right-top {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    margin-top: 50px;
+}
+
+.card-body-right-top p {
+    margin-bottom: 30px;
+    color: hsl(231, 11%, 63%);
+} */
+
+
+/* button {
+    cursor: pointer;
+    padding: 12px 15px;
+    border-radius: 7px;
+    font-size: 15px;
+    font-weight: bold;
+    width: 110px;
+  } */
+
+/* button[class='prev-step-btn'] {
+    float: left;
+    border: 1px solid hsl(0, 0%, 100%);
+    background-color: hsl(0, 0%, 100%);
+    color: hsl(231, 11%, 63%);
+  }
+  
+  button[class='prev-step-btn']:hover {
+    color: hsl(213, 96%, 18%);
+  }
+  
+  button[class='next-step-btn'] {
+    float: right;
+    border: 1px solid hsl(213, 96%, 18%);
+    background-color: hsl(213, 96%, 18%);
+    color: hsl(0, 0%, 100%);
+  
+  } */
+
+h1,
+label {
+    color: hsl(213, 96%, 18%);
+}
+
+input {
+    font-weight: bold;
+    font-size: 13px;
+    color: hsl(0, 0%, 26%);
+    padding: 15px;
+    border: 1px solid hsl(229, 24%, 87%);
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+h1 {
+    margin-bottom: 0px;
+}
+
+label {
+    margin-bottom: 10px;
+    font-size: 13px;
+}

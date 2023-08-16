@@ -19,14 +19,12 @@
 }
 
 .card {
- /* background-color: aquamarine;  */
  width: 100%;
 }
 
 .card-body {
   display: flex;
   flex-direction: row;
-  /* background-color: rebeccapurple; */
   height: 100%;
 }
 
@@ -39,8 +37,29 @@
   display: flex;
   flex-direction: column;
   margin: 15px;
-  /* background-color: blue; */
   border-radius: 10px;
+}
+
+.card-body-right {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 100px;
+  padding-right: 100px;
+}
+
+.card-body-right-top {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  margin-top: 50px;
+}
+
+.card-body-right-top p {
+  margin-bottom: 30px;
+  color: hsl(231, 11%, 63%);
 }
 
 .steps {
@@ -81,42 +100,9 @@
   font-size: 12px;
 }
 
-.card-body-right {
-  width: 70%;
-  display: flex;
-  flex-direction: column;
-  /* align-items: left; */
-  margin-left: auto;
-  margin-right: auto;
-  /* background-color: green; */
-  padding-left: 50px;
-  padding-right: 50px;
-}
 
-.card-body-right-top {
-  /* width: 70%; */
-  display: flex;
-  flex-direction: column;
-  /* align-items: left; */
-  /* margin-left: auto;
-  margin-right: auto; */
-  /* background-color: green; */
-  text-align: left;
-  margin-top: 50px;
-  /* padding-left: 30px;
-  padding-right: 30px; */
-}
 
-.card-body-right-top p {
-  margin-bottom: 30px;
-  color: hsl(231, 11%, 63%);
-}
 
-.card-body-right-bottom {
-  /* background-color: orange; */
-  /* padding-left: 30px;
-  padding-right: 30px; */
-}
 
 button {
   cursor: pointer;
@@ -148,16 +134,6 @@ button[class='next-step-btn'] {
 
 h1, label {
   color: hsl(213, 96%, 18%);
-}
-
-input {
-  font-weight: bold;
-  font-size: 13px;
-  color: hsl(0, 0%, 26%);
-  padding: 15px;
-  border: 1px solid hsl(229, 24%, 87%);
-  border-radius: 8px;
-  margin-bottom: 20px;
 }
 
 h1 {

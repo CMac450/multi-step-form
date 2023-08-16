@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './App.css'
+import './personalinfo.css'
 
 export function PersonalInfo({ activeStepIndex, setActiveStepIndex}) {
 

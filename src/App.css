@@ -72,13 +72,14 @@
 .step-num {
   border: 1px solid hsl(231, 100%, 99%); 
   border-radius: 20px;
-  /* background-color: hsl(206, 94%, 87%); */ /*active: hsl(206, 94%, 87%)*/
+  color: hsl(231, 100%, 99%);
   width: 30px;
   height: 30px;
-  color: hsl(231, 100%, 99%);
+  font-weight: bold;
+  align-self: center;  
   /* align-content: center;
   align-items: center; */
-  align-self: center;
+  /* background-color: hsl(206, 94%, 87%); */ /*active: hsl(206, 94%, 87%)*/
 }
 
 .step-description {

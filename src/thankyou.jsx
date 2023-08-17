@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './App.css'
 
-export function Thankyou({ activeStepIndex, setActiveStepIndex }) {
+export function Thankyou({ activeStepIndex, setActiveStepIndex, StepsComponent }) {
 
     const moveToNextStep = (activeStepIndex) => {
         setActiveStepIndex(activeStepIndex + 1);

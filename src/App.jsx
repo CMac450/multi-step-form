@@ -6,6 +6,7 @@ import { Plan } from './plan'
 import { Addons } from './addons'
 import { Summary } from './summary'
 import { Thankyou } from './thankyou'
+import { StepsComponent } from './steps'
 
 function App() {
 
@@ -22,6 +23,7 @@ function App() {
         <PersonalInfo
           activeStepIndex={activeStepIndex}
           setActiveStepIndex={setActiveStepIndex}
+          StepsComponent={StepsComponent}
           
         />
       ) : activeStepIndex === 1 ? (
@@ -31,6 +33,7 @@ function App() {
           setBillingType={setBillingType}
           setPlanName={setPlanName}
           setPlanPrice={setPlanPrice}
+          StepsComponent={StepsComponent}
         />
       ) : activeStepIndex === 2 ? (
         <Addons
@@ -39,6 +42,7 @@ function App() {
           billingType={billingType}
           planName={planName}
           planPrice={planPrice}
+          StepsComponent={StepsComponent}
         />
       ) : activeStepIndex === 3 ? (
         <Summary
@@ -47,11 +51,13 @@ function App() {
           billingType={billingType}
           planName={planName}
           planPrice={planPrice}
+          StepsComponent={StepsComponent}
         />
       ) : (
         <Thankyou
           activeStepIndex={activeStepIndex}
           setActiveStepIndex={setActiveStepIndex}
+          StepsComponent={StepsComponent}
         />
       )}
     </>

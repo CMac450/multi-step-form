@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import './plan.css';
 
-export function Plan({ activeStepIndex, setActiveStepIndex, setBillingType, setPlanName, setPlanPrice }) {
+export function Plan({ activeStepIndex, setActiveStepIndex, setBillingType, setPlanName, setPlanPrice, StepsComponent }) {
 
     const moveToNextStep = (activeStepIndex) => {
         setActiveStepIndex(activeStepIndex + 1);
@@ -14,9 +14,9 @@ export function Plan({ activeStepIndex, setActiveStepIndex, setBillingType, setP
 
     const [isToggleChecked, setIsToggleChecked] = useState(false);
 
-    
+
     const setMonthlyOrYearly = (val) => {
-        
+
         // console.log(`e.target.checked: ${val}`); 
         const e1 = document.getElementsByClassName("offer");
         // const e2 = document.getElementsByClassName("price");
@@ -26,16 +26,16 @@ export function Plan({ activeStepIndex, setActiveStepIndex, setBillingType, setP
             document.getElementById("monthly-billing").style.color = "hsl(231, 11%, 63%)";
             setBillingType("Yearly");
 
-            for(let i = 0; i < e1.length; i++) {
+            for (let i = 0; i < e1.length; i++) {
                 e1[i].style.display = 'inline';
             }
-        } else if(!val) {
+        } else if (!val) {
             setIsToggleChecked(false);
             document.getElementById("monthly-billing").style.color = "hsl(213, 96%, 18%)";
             document.getElementById("yearly-billing").style.color = "hsl(231, 11%, 63%)";
             setBillingType("Monthly");
 
-            for(let i = 0; i < e1.length; i++) {
+            for (let i = 0; i < e1.length; i++) {
                 e1[i].style.display = 'none';
             }
         }
@@ -44,12 +44,12 @@ export function Plan({ activeStepIndex, setActiveStepIndex, setBillingType, setP
     useEffect(() => {
         const planContainer = document.getElementById("plan-types");
         const plans = planContainer.getElementsByClassName("named-plan");
-        
-        for(let i = 0; i < plans.length; i++) {
-            plans[i].addEventListener("click", function() {
+
+        for (let i = 0; i < plans.length; i++) {
+            plans[i].addEventListener("click", function () {
                 let currentPlan = document.getElementsByClassName("active");
 
-                if(currentPlan.length > 0) {
+                if (currentPlan.length > 0) {
                     currentPlan[0].className = currentPlan[0].className.replace(" active", "");
                 }
                 this.className += " active";
@@ -65,39 +65,7 @@ export function Plan({ activeStepIndex, setActiveStepIndex, setBillingType, setP
             <div className='container'>
                 <div className='card'>
                     <div className='card-body'>
-                        <div className='card-body-left'>
-                            <div className='steps'>
-                                <div className='step-num'><span>1</span></div>
-                                <div className='step-description'>
-                                    <span>Step 1</span>
-                                    <p>Your info</p>
-                                </div>
-                            </div>
-
-                            <div className='steps'>
-                                <div className='step-num'>2</div>
-                                <div className='step-description'>
-                                    <span>Step 2</span>
-                                    <p>Select plan</p>
-                                </div>
-                            </div>
-
-                            <div className='steps'>
-                                <div className='step-num'>3</div>
-                                <div className='step-description'>
-                                    <span>Step 3</span>
-                                    <p>Add-ons</p>
-                                </div>
-                            </div>
-
-                            <div className='steps'>
-                                <div className='step-num'>4</div>
-                                <div className='step-description'>
-                                    <span>Step 4</span>
-                                    <p>Summary</p>
-                                </div>
-                            </div>
-                        </div>
+                        <StepsComponent activeStepIndex={activeStepIndex} />
                         <div className='card-body-right'>
                             <div className='card-body-right-top'>
                                 <h1>Select your plan</h1>

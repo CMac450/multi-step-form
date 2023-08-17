@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './App.css'
 import './personalinfo.css'
 
-export function PersonalInfo({ activeStepIndex, setActiveStepIndex}) {
+export function PersonalInfo({ activeStepIndex, setActiveStepIndex, StepsComponent}) {
 
     const moveToNextStep = (step) => {
         setActiveStepIndex(step + 1);
@@ -16,39 +16,7 @@ export function PersonalInfo({ activeStepIndex, setActiveStepIndex}) {
             <div className='container'>
                 <div className='card'>
                     <div className='card-body'>
-                        <div className='card-body-left'>
-                            <div className='steps'>
-                                <div className='step-num'><span>1</span></div>
-                                <div className='step-description'>
-                                    <span>Step 1</span>
-                                    <p>Your info</p>
-                                </div>
-                            </div>
-
-                            <div className='steps'>
-                                <div className='step-num'>2</div>
-                                <div className='step-description'>
-                                    <span>Step 2</span>
-                                    <p>Select plan</p>
-                                </div>
-                            </div>
-
-                            <div className='steps'>
-                                <div className='step-num'>3</div>
-                                <div className='step-description'>
-                                    <span>Step 3</span>
-                                    <p>Add-ons</p>
-                                </div>
-                            </div>
-
-                            <div className='steps'>
-                                <div className='step-num'>4</div>
-                                <div className='step-description'>
-                                    <span>Step 4</span>
-                                    <p>Summary</p>
-                                </div>
-                            </div>
-                        </div>
+                        <StepsComponent activeStepIndex={activeStepIndex}/>
                         <div className='card-body-right'>
                             <div className='card-body-right-top'>
                                 <h1>Personal info</h1>

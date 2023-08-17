@@ -25,19 +25,44 @@ export function Addons({ activeStepIndex, setActiveStepIndex, billingType, planN
 
         // }
         const parentElement = e.target.parentElement.id;
-        if (e.target.checked) {
-            console.log(`true`);
-            console.log(e.target);
-            document.getElementById(parentElement).style.backgroundColor = "hsl(231, 100%, 99%)";
-            document.getElementById(parentElement).style.border = "1px solid hsl(243, 100%, 62%)"
-        } else if (!e.target.checked) {
-            document.getElementById(parentElement).style.backgroundColor = "hsl(0, 0%, 100%)";
+        // if (e.target.checked) {
+        //     // console.log(`true`);
+        //     // console.log(e.target);
+        //     document.getElementById(parentElement).style.backgroundColor = "hsl(231, 100%, 99%)";
+        //     document.getElementById(parentElement).style.border = "1px solid hsl(243, 100%, 62%)";
+        // } else if (!e.target.checked) {
+        //     document.getElementById(parentElement).style.backgroundColor = "hsl(0, 0%, 100%)";
+        //     document.getElementById(parentElement).style.border = "1px solid hsl(229, 24%, 87%)";
+        // }
+
+        switch (e.target.checked) {
+            case true:
+                document.getElementById(parentElement).style.backgroundColor = "hsl(231, 100%, 99%)";
+                document.getElementById(parentElement).style.border = "1px solid hsl(243, 100%, 62%)";
+                document.getElementById(parentElement).onmouseout = (function() {
+                    this.style.border = "1px solid hsl(243, 100%, 62%)";
+                });
+                break;
+            case false:
+                document.getElementById(parentElement).style.backgroundColor = "hsl(0, 0%, 100%)";
+                document.getElementById(parentElement).onmouseout = (function () {
+                    this.style.border = "1px solid hsl(229, 24%, 87%)";
+                });
+                document.getElementById(parentElement).onmouseover = (function () {
+                    this.style.border = "1px solid hsl(243, 100%, 62%)";
+                });
+                break;
+            default:
+                document.getElementById(parentElement).onmouseover = (function () {
+                    this.style.border = "1px solid hsl(243, 100%, 62%)"
+                });
+                break;
         }
     }
 
-    useEffect(() => {
+    // useEffect(() => {
 
-    }, [])
+    // }, [])
 
     return (
         <>

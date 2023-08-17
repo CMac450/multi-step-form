@@ -30,7 +30,9 @@ function App() {
         <Plan
           activeStepIndex={activeStepIndex}
           setActiveStepIndex={setActiveStepIndex}
+          billingType={billingType}
           setBillingType={setBillingType}
+          planName={planName}
           setPlanName={setPlanName}
           setPlanPrice={setPlanPrice}
           StepsComponent={StepsComponent}
@@ -43,6 +45,10 @@ function App() {
           planName={planName}
           planPrice={planPrice}
           StepsComponent={StepsComponent}
+          addOn={addOn}
+          setAddOn={setAddOn}
+          addOnPrice={addOnPrice}
+          setAddOnPrice={setAddOnPrice}
         />
       ) : activeStepIndex === 3 ? (
         <Summary
@@ -52,6 +58,10 @@ function App() {
           planName={planName}
           planPrice={planPrice}
           StepsComponent={StepsComponent}
+          addOn={addOn}
+          setAddOn={setAddOn}
+          addOnPrice={addOnPrice}
+          setAddOnPrice={setAddOnPrice}
         />
       ) : (
         <Thankyou

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './App.css'
 
-export function Summary({ activeStepIndex, setActiveStepIndex, billingType, planName, planPrice, StepsComponent }) {
+export function Summary({ activeStepIndex, setActiveStepIndex, billingType, planName, planPrice, StepsComponent, addOn, setAddOn, addOnPrice, setAddOnPrice }) {
 
     const moveToNextStep = (activeStepIndex) => {
         setActiveStepIndex(activeStepIndex + 1);

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import './plan.css';
 
-export function Plan({ activeStepIndex, setActiveStepIndex, setBillingType, setPlanName, setPlanPrice, StepsComponent }) {
+export function Plan({ activeStepIndex, setActiveStepIndex, billingType, setBillingType, planName, setPlanName, setPlanPrice, StepsComponent }) {
 
     const moveToNextStep = (activeStepIndex) => {
         setActiveStepIndex(activeStepIndex + 1);
@@ -41,6 +41,26 @@ export function Plan({ activeStepIndex, setActiveStepIndex, setBillingType, setP
         }
     }
 
+    const setPrice = () => {
+        if (planName === "Arcade" && billingType === "Monthly") {
+            setPlanPrice(9);
+        } else {
+            setPlanPrice(90);
+        }
+
+        if (planName === "Advanced" && billingType === "Monthly") {
+            setPlanPrice(12);
+        } else {
+            setPlanPrice(120);
+        }
+
+        if (planName === "Pro" && billingType === "Monthly") {
+            setPlanPrice(15);
+        } else {
+            setPlanPrice(150);
+        }
+    }
+
     useEffect(() => {
         const planContainer = document.getElementById("plan-types");
         const plans = planContainer.getElementsByClassName("named-plan");
@@ -73,7 +93,7 @@ export function Plan({ activeStepIndex, setActiveStepIndex, setBillingType, setP
 
                                 <div className='plans'>
                                     <div id='plan-types'>
-                                        <div className='named-plan' id='arcade-plan'> {/*onClick={(e) => {selectPlan(e.target)}}     selectPlan(e.target.id) */}
+                                        <div className='named-plan' id='arcade-plan' onClick={(e) => {setPlanName("Arcade"); setPrice()}}> {/*onClick={(e) => {selectPlan(e.target)}}     selectPlan(e.target.id) */}
                                             <img src='/assets/images/icon-arcade.svg' />
                                             <p className='plan-name'>Arcade</p>
                                             {isToggleChecked ? (
@@ -83,7 +103,7 @@ export function Plan({ activeStepIndex, setActiveStepIndex, setBillingType, setP
                                             <p className='offer'>2 months free</p>
                                         </div>
 
-                                        <div className='named-plan' id='advanced-plan'>
+                                        <div className='named-plan' id='advanced-plan' onClick={(e) => {setPlanName("Advanced"); setPrice()}}>
                                             <img src='/assets/images/icon-advanced.svg' />
                                             <p className='plan-name'>Advanced</p>
                                             {isToggleChecked ? (
@@ -93,7 +113,7 @@ export function Plan({ activeStepIndex, setActiveStepIndex, setBillingType, setP
                                             <p className='offer'>2 months free</p>
                                         </div>
 
-                                        <div className='named-plan' id='pro-plan'>
+                                        <div className='named-plan' id='pro-plan' onClick={(e) => {setPlanName("Pro"); setPrice()}}>
                                             <img src='/assets/images/icon-pro.svg' />
                                             <p className='plan-name'>Pro</p>
                                             {isToggleChecked ? (

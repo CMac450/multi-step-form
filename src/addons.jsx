@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import './addons.css';
 
-export function Addons({ activeStepIndex, setActiveStepIndex, billingType, planName, planPrice, StepsComponent }) {
+export function Addons({ activeStepIndex, setActiveStepIndex, billingType, planName, planPrice, StepsComponent, addOn, setAddOn, addOnPrice, setAddOnPrice }) {
 
     const moveToNextStep = (activeStepIndex) => {
         setActiveStepIndex(activeStepIndex + 1);
@@ -12,29 +12,14 @@ export function Addons({ activeStepIndex, setActiveStepIndex, billingType, planN
         setActiveStepIndex(activeStepIndex - 1);
     }
 
-    console.log(`billingType: ${billingType}`);
+    // console.log(`billingType: ${billingType}`);
+    // console.log(`planName: ${planName}`);
+    // console.log(`planPrice: ${planPrice}`);
 
     // console.log(`current step: ${activeStepIndex}`);
 
     const setCheckedAddOn = (e) => {
-        //add-on
-        // const addonsContainer = document.getElementById("add-on-container");
-        // const addons = addonsContainer.getElementsByClassName("add-on");
-
-        // for(let i=0; i < addons.length; i++) {
-
-        // }
         const parentElement = e.target.parentElement.id;
-        // if (e.target.checked) {
-        //     // console.log(`true`);
-        //     // console.log(e.target);
-        //     document.getElementById(parentElement).style.backgroundColor = "hsl(231, 100%, 99%)";
-        //     document.getElementById(parentElement).style.border = "1px solid hsl(243, 100%, 62%)";
-        // } else if (!e.target.checked) {
-        //     document.getElementById(parentElement).style.backgroundColor = "hsl(0, 0%, 100%)";
-        //     document.getElementById(parentElement).style.border = "1px solid hsl(229, 24%, 87%)";
-        // }
-
         switch (e.target.checked) {
             case true:
                 document.getElementById(parentElement).style.backgroundColor = "hsl(231, 100%, 99%)";
@@ -57,6 +42,27 @@ export function Addons({ activeStepIndex, setActiveStepIndex, billingType, planN
                     this.style.border = "1px solid hsl(243, 100%, 62%)"
                 });
                 break;
+        }
+
+        if(billingType === "Monthly" && document.getElementById("online-service")) {
+            setAddOn("Online service");
+            setAddOnPrice(1);
+        } else {
+            setAddOnPrice(10);
+        }
+
+        if(billingType === "Monthly" && document.getElementById("extra-storage")) {
+            setAddOn("Extra Storage");
+            setAddOnPrice(2);
+        } else {
+            setAddOnPrice(20);
+        }
+
+        if(billingType === "Monthly" && document.getElementById("customizable-profile")) {
+            setAddOn("Customizable profile");
+            setAddOnPrice(2);
+        } else {
+            setAddOnPrice(20);
         }
     }
 

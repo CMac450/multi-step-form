@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
-import './App.css'
+import React, { useState, useEffect } from 'react';
+import './App.css';
+import './summary.css';
 
-export function Summary({ activeStepIndex, setActiveStepIndex, billingType, planName, planPrice, StepsComponent, addOn, setAddOn, addOnPrice, setAddOnPrice }) {
+export function Summary({ activeStepIndex, setActiveStepIndex, billingType, planName, planPrice, StepsComponent, addOn, setAddOn, addOnPrice, setAddOnPrice, addOnDetails, setAddOnDetails }) {
 
     const moveToNextStep = (activeStepIndex) => {
         setActiveStepIndex(activeStepIndex + 1);
@@ -12,6 +13,11 @@ export function Summary({ activeStepIndex, setActiveStepIndex, billingType, plan
     }
 
     // console.log(`current step: ${activeStepIndex}`);
+    console.log(addOnDetails)
+
+    useEffect(() => {
+
+    }, [])
 
     return (
         <>
@@ -21,18 +27,26 @@ export function Summary({ activeStepIndex, setActiveStepIndex, billingType, plan
                     <div className='card-body'>
                         <StepsComponent activeStepIndex={activeStepIndex} />
                         <div className='card-body-right'>
-                            <div className='card-body-right-top'>
+                            <div className='card-body-right-top-summary'>
                                 <h1>Finishing up</h1>
-                                <p>Please provide your name, email, address, and phone number.</p>
+                                <p>Double-check everything looks OK before confirming.</p>
 
-                                <label htmlFor='name' >Name</label>
-                                <input type='text' id='name' placeholder='e.g. Stephen King'></input>
+                                <div className='summary-container'>
+                                    <div className='plan-details'>
+                                        <span className='plan-name-summary'>{planName} ({billingType})</span>
+                                        {/* <span>${planPrice}/mo</span> */}
+                                        {billingType === "Monthly" ? (
+                                            <span className='plan-price'>${planPrice}/mo</span>
+                                        ) :(
+                                            <span className='plan-price'>${planPrice}/yr</span>
+                                        )}
+                                    </div>
+                                    
+                                    <hr />
+                                    {addOn}
 
-                                <label htmlFor='email'>Email Address</label>
-                                <input type='email' id='email' placeholder='e.g. stephenking@lorem.com'></input>
-
-                                <label htmlFor='phone'>Phone Number</label>
-                                <input type='phone' id='phone' placeholder='e.g. +1 234 567 890'></input>
+                                    {}
+                                </div>
 
 
                             </div>

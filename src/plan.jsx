@@ -93,26 +93,6 @@ export function Plan({ activeStepIndex, setActiveStepIndex, billingType, setBill
                 break;
         }
 
-        //console.log(`plan name is: ${planName}`);
-    }
-
-    const setPlanDetails = (n, p, b) => {
-        const planDetails = {
-            name: n,
-            price: p,
-            billing: b,
-        }
-        //console.log(planDetails);
-
-        if (!localStorage.getItem('plan-details')) {
-            localStorage.setItem('plan-details', JSON.stringify([]));
-        }
-
-        const localStorageItem = JSON.parse(localStorage.getItem("plan-details"));
-        //localStorageItem.push(planDetails);
-        console.log(planDetails);
-        //localStorage.setItem("plan-details", JSON.stringify(localStorageItem));
-
     }
 
     useEffect(() => {
@@ -130,8 +110,6 @@ export function Plan({ activeStepIndex, setActiveStepIndex, billingType, setBill
             });
         }
 
-        //setPlanDetails(planName, planPrice, billingType);
-
         const planDetails = {
             name: planName,
             price: planPrice,
@@ -141,28 +119,10 @@ export function Plan({ activeStepIndex, setActiveStepIndex, billingType, setBill
         if (!localStorage.getItem('plan-details')) {
             localStorage.setItem('plan-details', JSON.stringify([]));
         } 
-        // else {
-        //     localStorage.removeItem("plan-details");
-        // }
-
-        
+   
         const localStorageItem = JSON.parse(localStorage.getItem("plan-details"));
-        localStorageItem.push(planDetails);
-        console.log(planDetails);
-
-        if (localStorageItem.length < 1) {
-
-        }
+        localStorageItem.splice(0, 1, planDetails);
         localStorage.setItem("plan-details", JSON.stringify(localStorageItem));
-
-        ////plan-details is being set twice for some reason
-        // console.log(planDetails);
-
-        // if (planDetails.length > 1) {
-
-        // }
-
-        // console.log('i fire once');
 
     }, [billingType, planPrice, planName])
 

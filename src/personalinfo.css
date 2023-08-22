@@ -80,3 +80,7 @@ label {
     margin-bottom: 10px;
     font-size: 13px;
 }
+
+#name-error, #phone-error, #email-error{
+    display: none;
+}

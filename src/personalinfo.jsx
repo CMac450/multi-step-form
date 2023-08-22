@@ -11,6 +11,7 @@ export function PersonalInfo({ activeStepIndex, setActiveStepIndex, StepsCompone
     // console.log(`current step: ${activeStepIndex}`);
     const [showEmptyFieldError, setShowEmptyFieldError] = useState(true);
     const [showFormatError, setShowFormatError] = useState(true);
+    // const [showInputError, setInputError] = useState(false);
 
     const validateInput = (event) => {
         event.preventDefault();
@@ -22,10 +23,15 @@ export function PersonalInfo({ activeStepIndex, setActiveStepIndex, StepsCompone
         switch (name) {
             case "":
                 setShowEmptyFieldError(true);
-                setShowFormatError(false);
+                setShowFormatError(false); ////needed here????
+                //setInputError(true);
                 document.getElementById("name").style.outline = "1px solid hsl(0, 100%, 67%)";
                 document.getElementById("name").style.backgroundColor = "hsla(4, 100%, 80%, 0.26)";
                 document.getElementById("name").style.color = "hsl(0, 100%, 67%)";
+
+                document.getElementById("name-error").style.display = "inline";
+                document.getElementById("name-error").style.fontSize = "10px";
+                document.getElementById("name-error").style.color = "hsl(0, 100%, 67%)";
                 console.log('HIT 1: name field is empty');
                 break;
             default:
@@ -34,6 +40,8 @@ export function PersonalInfo({ activeStepIndex, setActiveStepIndex, StepsCompone
                 document.getElementById("name").style.outline = "1px solid hsl(0, 0%, 83%)";
                 document.getElementById("name").style.backgroundColor = "hsla(4, 100%, 80%, 0)";
                 document.getElementById("name").style.color = "hsl(0, 0%, 30%)";
+
+                document.getElementById("name-error").style.display = "none";
                 console.log('HIT 2: name field is NOT empty');
                 break;
         }
@@ -45,6 +53,10 @@ export function PersonalInfo({ activeStepIndex, setActiveStepIndex, StepsCompone
                 document.getElementById("phone").style.outline = "1px solid hsl(0, 100%, 67%)";
                 document.getElementById("phone").style.backgroundColor = "hsla(4, 100%, 80%, 0.26)";
                 document.getElementById("phone").style.color = "hsl(0, 100%, 67%)";
+
+                document.getElementById("phone-error").style.display = "inline";
+                document.getElementById("phone-error").style.fontSize = "10px";
+                document.getElementById("phone-error").style.color = "hsl(0, 100%, 67%)";
                 console.log('HIT 3: phone field is empty');
                 break;
             default:
@@ -53,6 +65,7 @@ export function PersonalInfo({ activeStepIndex, setActiveStepIndex, StepsCompone
                 document.getElementById("phone").style.outline = "1px solid hsl(0, 0%, 83%)";
                 document.getElementById("phone").style.backgroundColor = "hsla(4, 100%, 80%, 0)";
                 document.getElementById("phone").style.color = "hsl(0, 0%, 30%)";
+                document.getElementById("phone-error").style.display = "none";
                 console.log('HIT 4: phone field is NOT empty');
                 break;
         }
@@ -64,6 +77,10 @@ export function PersonalInfo({ activeStepIndex, setActiveStepIndex, StepsCompone
                 document.getElementById("email").style.outline = "1px solid hsl(0, 100%, 67%)";
                 document.getElementById("email").style.backgroundColor = "hsla(4, 100%, 80%, 0.26)";
                 document.getElementById("email").style.color = "hsl(0, 100%, 67%)";
+
+                document.getElementById("email-error").style.display = "inline";
+                document.getElementById("email-error").style.fontSize = "10px";
+                document.getElementById("email-error").style.color = "hsl(0, 100%, 67%)";
                 console.log('HIT 5: email field is empty');
                 break;
             default:
@@ -72,6 +89,7 @@ export function PersonalInfo({ activeStepIndex, setActiveStepIndex, StepsCompone
                 document.getElementById("email").style.outline = "1px solid hsl(0, 0%, 83%)";
                 document.getElementById("email").style.backgroundColor = "hsla(4, 100%, 80%, 0)";
                 document.getElementById("email").style.color = "hsl(0, 0%, 30%)";
+                document.getElementById("email-error").style.display = "none";
                 console.log('HIT 6: email field is NOT empty');
 
                 switch (emailPattern.test(email)) {
@@ -94,11 +112,11 @@ export function PersonalInfo({ activeStepIndex, setActiveStepIndex, StepsCompone
                 break;
         }
 
-        if((showEmptyFieldError && showFormatError) || (showEmptyFieldError || showFormatError)) {
+        if ((showEmptyFieldError && showFormatError) || (showEmptyFieldError || showFormatError)) {
             console.log('your form has errors!');
             console.log(`showEmptyFieldError: ${showEmptyFieldError}`);
             console.log(`showEmptyFieldError: ${showFormatError}`);
-        } 
+        }
         else {
             console.log(`no errors to report`);
             console.log(`showEmptyFieldError: ${showEmptyFieldError}`);
@@ -121,19 +139,51 @@ export function PersonalInfo({ activeStepIndex, setActiveStepIndex, StepsCompone
                                 <p>Please provide your name, email, address, and phone number.</p>
 
                                 <label htmlFor='name' >Name</label>
+                                {/* {showInputError ? (
+                                    <div id='user-info-error'>
+                                        <span>Name is required</span>
+                                    </div>
+                                ) : (
+                                    <></>
+                                )} */}
+                                <div className='user-info-error' id="name-error">
+                                    <span>Name is required</span>
+                                </div>
                                 <input type='text' id='name' placeholder='e.g. Stephen King' required></input>
 
+
                                 <label htmlFor='email'>Email Address</label>
+                                {/* {showInputError ? (
+                                    <div id='user-info-error'>
+                                        <span>Email address is required</span>
+                                    </div>
+                                ) : (
+                                    <></>
+                                )} */}
+                                <div className='user-info-error' id="email-error">
+                                    <span>Email address is required</span>
+                                </div>
                                 <input type='email' id='email' placeholder='e.g. stephenking@lorem.com' required></input>
 
+
                                 <label htmlFor='phone'>Phone Number</label>
+                                {/* {showInputError ? (
+                                    <div id='user-info-error'>
+                                        <span>Phone is required</span>
+                                    </div>
+                                ) : (
+                                    <></>
+                                )} */}
+                                <div className='user-info-error' id="phone-error">
+                                    <span>Phone is required</span>
+                                </div>
                                 <input type='tel' id='phone' placeholder='e.g. +1 234 567 890' required></input>
 
 
                             </div>
                             <div className='card-body-right-bottom'>
                                 {/* <button className='prev-step-btn' label='Next Step'>Go back</button> */}
-                                <button className='next-step-btn' label='Next Step' onClick={(e) => { validateInput(e); }}>Next Step</button>
+                                <button className='next-step-btn' label='Next Step' onClick={(e) => { (!showEmptyFieldError && !showFormatError) ? moveToNextStep(activeStepIndex) : validateInput(e); }}>Next Step</button> {/*(setInputError(true), validateInput(e)) */}
                             </div>
                         </div>
                     </div>

@@ -16,7 +16,7 @@
 }
 
 .add-on:hover {
-    /* border: 1px solid hsl(243, 100%, 62%); */
+    border: 1px solid hsl(243, 100%, 62%);
     cursor: pointer;
 }
 

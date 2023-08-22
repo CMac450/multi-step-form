@@ -12,12 +12,51 @@ export function Summary({ activeStepIndex, setActiveStepIndex, billingType, plan
         setActiveStepIndex(activeStepIndex - 1);
     }
 
+    const [totalPrice, setTotalPrice] = useState(0);
+
+    // useEffect(() => {
+    //     ///get total price
+    //     console.log(`plan name: ${planName}, plan price: ${planPrice}, billing type: ${billingType}`);
+        
+    //     const localStorageItem = JSON.parse(localStorage.getItem("add-ons"));
+    //     if (localStorageItem.length > 0) {
+    //         for (let i = 0; i < localStorageItem.length; i++) {
+    //             //nameArray.push(localStorageItem[i].name);
+    //             //console.log(localStorageItem[i].price);
+
+    //             let tp = planPrice;
+    //             tp += localStorageItem[i].price;
+    //             setTotalPrice(tp);
+                
+    //         }
+    //         //console.log(`totalPrice: ${totalPrice}`);
+    //     }
+    //     //console.log(`totalPrice: ${totalPrice}`);
+    // }, [])
+
+
+
     // console.log(`current step: ${activeStepIndex}`);
-    console.log(addOnDetails)
+    //console.log(addOnDetails)
 
     useEffect(() => {
-
+        ///get total price
+        let tp = planPrice;
+        const localStorageItem = JSON.parse(localStorage.getItem("add-ons"));
+        if (localStorageItem.length > 0) {
+            for (let i = 0; i < localStorageItem.length; i++) {
+                //nameArray.push(localStorageItem[i].name);
+                console.log(localStorageItem[i].price);
+                tp += localStorageItem[i].price;
+            }
+        }
+        console.log(`totalPrice: ${tp}`);
+        setTotalPrice(tp);
     }, [])
+
+    let addOns = [];
+    addOns = JSON.parse(localStorage.getItem("add-ons"));
+    //console.log(addOns);
 
     return (
         <>
@@ -37,22 +76,48 @@ export function Summary({ activeStepIndex, setActiveStepIndex, billingType, plan
                                         {/* <span>${planPrice}/mo</span> */}
                                         {billingType === "Monthly" ? (
                                             <span className='plan-price'>${planPrice}/mo</span>
-                                        ) :(
+                                        ) : (
                                             <span className='plan-price'>${planPrice}/yr</span>
                                         )}
                                     </div>
-                                    
-                                    <hr />
-                                    {addOn}
 
-                                    {}
+                                    <hr />
+                                    {addOns ? (
+                                        addOns.map((item, index) => {
+                                            //console.log(item.name);
+                                            return (
+                                                <div className='add-on-row-container'>
+                                                    <div className='add-on-row'>
+                                                        <div className='add-on-row-left'><span>{item.name}</span></div>
+                                                        <div className='add-on-row-right'><span>${item.price}</span></div>
+                                                    </div>
+                                                </div>
+                                            )
+                                        })) : (
+                                        <></>
+                                    )
+                                    }
                                 </div>
 
 
                             </div>
+                            <div className='total'>
+                                <div className='total-text'>
+                                {
+                                    billingType === "Monthly" ? (
+                                        <p>Total (per month)</p>
+                                    ) : (
+                                        <p>Total (per year)</p>
+                                    )
+                                }
+                                </div>
+                                <div className='total-price'>
+                                    <p id="price-amount">${totalPrice} {billingType === "Monthly" ? (<p>/mo</p>) : (<p>/yr</p>)}</p>
+                                </div>
+                            </div>
                             <div className='card-body-right-bottom'>
-                                <button className='prev-step-btn' label='Next Step' onClick={(e) => { goBackToPreviousStep(activeStepIndex) }}>Go back</button>
-                                <button className='next-step-btn' label='Next Step' onClick={(e) => { moveToNextStep(activeStepIndex) }}>Next Step</button>
+                                <button className='prev-step-btn' label='Next Step' onClick={(e) => { goBackToPreviousStep(activeStepIndex) }}>Go Back</button>
+                                <button className='next-step-btn' label='Next Step' onClick={(e) => { moveToNextStep(activeStepIndex) }}>Confirm</button>
                             </div>
                         </div>
                     </div>

@@ -1,0 +1,66 @@
+.card-body-right-top-summary {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    margin-top: 50px;
+}
+
+.card-body-right-top-summary p{
+    margin-bottom: 30px;
+    color: hsl(231, 11%, 63%);
+}
+
+.summary-container {
+    background-color: hsl(231, 100%, 99%);
+    width: auto;
+    height: 250px;
+    border-radius: 10px;
+}
+
+.plan-details {
+    display: flex;
+    flex-direction: row;
+}
+
+.plan-name-summary {
+    margin-top: 10px;
+    margin-bottom: 5px;
+    color: hsl(213, 96%, 18%);
+    font-weight: bold;
+}
+
+.add-on-row-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.add-on-row{
+    display: flex;
+    flex-direction: row;
+}
+
+.add-on-row-left {
+    /* display: flex;
+    flex-direction: row; */
+    /* text-align: left; */
+    margin: 0 auto;
+
+}
+
+.add-on-row-right{ 
+    /* float: right */
+    /* text-align: right; */
+    margin: 0 auto;
+}
+
+.total {
+    display: flex;
+}
+
+.total-text, .total-price {
+    margin: 0 auto;
+}
+
+.total-price {
+    /* margin: 0 auto; */
+}

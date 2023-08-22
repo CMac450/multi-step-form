@@ -12,7 +12,13 @@ export function Addons({ activeStepIndex, setActiveStepIndex, billingType, Steps
         setActiveStepIndex(activeStepIndex - 1);
     }
 
-    console.log(JSON.parse(localStorage.getItem("add-ons")));  //////testing
+    // console.log(JSON.parse(localStorage.getItem("add-ons")));  //////testing
+
+    const [isChecked, setIsChecked] = useState(false);
+
+    // useEffect(() => {
+
+    // }, [])
 
     const setCheckedAddOn = (e) => {
         const parentElementId = e.target.parentElement.id;
@@ -28,7 +34,6 @@ export function Addons({ activeStepIndex, setActiveStepIndex, billingType, Steps
 
         const localStorageItem = JSON.parse(localStorage.getItem("add-ons")); // || [];
         
-
         switch (e.target.checked) {
             case true:
                 document.getElementById(parentElementId).style.backgroundColor = "hsl(231, 100%, 99%)";
@@ -43,13 +48,6 @@ export function Addons({ activeStepIndex, setActiveStepIndex, billingType, Steps
                 let a;
                 let ap;
 
-
-                // //if local storage item not exists, set it //////moving to top of script so that it updates automatically or in a useEffect
-                // if (!localStorage.getItem('add-ons')) {
-                //     localStorage.setItem('add-ons', JSON.stringify([]));
-                // }
-
-                // const localStorageItem = JSON.parse(localStorage.getItem("add-ons")); // || [];
                 const nameArray = [];
 
                 switch (parentElementId) {
@@ -151,16 +149,6 @@ export function Addons({ activeStepIndex, setActiveStepIndex, billingType, Steps
                     this.style.border = "1px solid hsl(243, 100%, 62%)";
                 });
 
-                //let a;
-                // let ap;
-
-
-                // //if local storage item not exists, set it
-                // if (!localStorage.getItem('add-ons')) {
-                //     localStorage.setItem('add-ons', JSON.stringify([]));
-                // }
-
-                let localStorageCopy =[]; //= [...localStorageItem];
                 let names = [];
                 let serviceToRemove;
                 let indexPosInStorage;
@@ -171,104 +159,49 @@ export function Addons({ activeStepIndex, setActiveStepIndex, billingType, Steps
                     case "online-service":
                         serviceToRemove = "Online service";
 
-                        // let array1 = { name: a, price: ap };
-
-                        // if (localStorageItem.length > 0) {
-                        //     for (let i = 0; i < localStorageItem.length; i++) {
-                        //         nameArray.push(localStorageItem[i].name);
-                        //     }
-
-                        //     if (!nameArray.includes(a)) {
-                        //         localStorageItem.push(array2);
-                        //         localStorage.setItem("add-ons", JSON.stringify(localStorageItem));
-                        //     }
-
-                        // } else {
-                        //     localStorageItem.push(array1);
-                        //     localStorage.setItem("add-ons", JSON.stringify(localStorageItem));
-                        // }
-                        // console.log(`localStorageItem: ${localStorage.getItem('add-ons')}`);
-                        //localStorageCopy.push([...localStorageItem]);
-                        //console.log(`localStorageCopy: ${localStorageCopy}`);
-
-                        
-                        
                         if (localStorageItem.length > 0) {
                             for (let i = 0; i < localStorageItem.length; i++) {
-                                names.push(localStorageItem[i].name);
-                                console.log(localStorageItem[i]);
-
                                 const arrayItem = localStorageItem[i];
-                                //indexPosStorage = localStorageItem.find((element) => element[i].name === a);
-
-                                if(arrayItem.name === serviceToRemove) {
-                                    // console.log('HIT');
-                                    
-                                    console.log(`index of ${arrayItem.name}: ${localStorageItem.indexOf(arrayItem)}`);
-
-                                    ////might have to do this with a copt of localstorage and them set it to this value
+      
+                                if(arrayItem.name === serviceToRemove) { 
                                     indexPosInStorage = localStorageItem.indexOf(arrayItem);
                                     localStorageItem.splice(indexPosInStorage, 1);
-
                                     localStorage.setItem("add-ons", JSON.stringify(localStorageItem));
                                 }
                             }
-                        }
-                        console.log(localStorageItem);
-                        
-
-                        break;
+                        }                    
+                    break;
                     case "extra-storage":
                         serviceToRemove = "Extra storage";
                         if (localStorageItem.length > 0) {
                             for (let i = 0; i < localStorageItem.length; i++) {
-                                names.push(localStorageItem[i].name);
-                                console.log(localStorageItem[i]);
-
                                 const arrayItem = localStorageItem[i];
-                                //indexPosStorage = localStorageItem.find((element) => element[i].name === a);
 
                                 if(arrayItem.name === serviceToRemove) {
-                                    // console.log('HIT');
-                                    
-                                    console.log(`index of ${arrayItem.name}: ${localStorageItem.indexOf(arrayItem)}`);
-
-                                    ////might have to do this with a copt of localstorage and them set it to this value
                                     indexPosInStorage = localStorageItem.indexOf(arrayItem);
                                     localStorageItem.splice(indexPosInStorage, 1);
-
                                     localStorage.setItem("add-ons", JSON.stringify(localStorageItem));
                                 }
                             }
                         }
-                        break;
+                    break;
                     case "customizable-profile":
                         serviceToRemove = "Customizable profile";                     
                         if (localStorageItem.length > 0) {
                             for (let i = 0; i < localStorageItem.length; i++) {
-                                names.push(localStorageItem[i].name);
-                                console.log(localStorageItem[i]);
-
                                 const arrayItem = localStorageItem[i];
-                                //indexPosStorage = localStorageItem.find((element) => element[i].name === a);
-
+                                
                                 if(arrayItem.name === serviceToRemove) {
-                                    // console.log('HIT');
-                                    
-                                    console.log(`index of ${arrayItem.name}: ${localStorageItem.indexOf(arrayItem)}`);
-
-                                    ////might have to do this with a copt of localstorage and them set it to this value
                                     indexPosInStorage = localStorageItem.indexOf(arrayItem);
                                     localStorageItem.splice(indexPosInStorage, 1);
-
                                     localStorage.setItem("add-ons", JSON.stringify(localStorageItem));
                                 }
                             }
                         }
-                        break;
+                    break;
                 }
 
-                break;
+            break;
         }
     }
 

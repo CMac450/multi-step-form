@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import './plan.css';
 
-export function Plan({ activeStepIndex, setActiveStepIndex, billingType, setBillingType, planName, setPlanName, setPlanPrice, StepsComponent }) {
+export function Plan({ activeStepIndex, setActiveStepIndex, billingType, setBillingType, planName, setPlanName, setPlanPrice, planPrice, StepsComponent }) { //planName, setPlanName, planPrice,
 
     const moveToNextStep = (activeStepIndex) => {
         setActiveStepIndex(activeStepIndex + 1);
@@ -13,13 +13,13 @@ export function Plan({ activeStepIndex, setActiveStepIndex, billingType, setBill
     }
 
     const [isToggleChecked, setIsToggleChecked] = useState(false);
+    //let planName;
+    //let planPrice;
 
 
     const setMonthlyOrYearly = (val) => {
 
-        // console.log(`e.target.checked: ${val}`); 
         const e1 = document.getElementsByClassName("offer");
-        // const e2 = document.getElementsByClassName("price");
         if (val) {
             setIsToggleChecked(true);
             document.getElementById("yearly-billing").style.color = "hsl(213, 96%, 18%)";
@@ -29,6 +29,21 @@ export function Plan({ activeStepIndex, setActiveStepIndex, billingType, setBill
             for (let i = 0; i < e1.length; i++) {
                 e1[i].style.display = 'inline';
             }
+
+            switch (planName) {
+                case "Arcade":
+                    setPlanPrice(90);
+                    break;
+
+                case "Advanced":
+                    setPlanPrice(120);
+                    break;
+
+                case "Pro":
+                    setPlanPrice(150);
+                    break;
+            }
+
         } else if (!val) {
             setIsToggleChecked(false);
             document.getElementById("monthly-billing").style.color = "hsl(213, 96%, 18%)";
@@ -38,27 +53,66 @@ export function Plan({ activeStepIndex, setActiveStepIndex, billingType, setBill
             for (let i = 0; i < e1.length; i++) {
                 e1[i].style.display = 'none';
             }
+
+            switch (planName) {
+                case "Arcade":
+                    setPlanPrice(9);
+                    break;
+
+                case "Advanced":
+                    setPlanPrice(12);
+                    break;
+
+                case "Pro":
+                    setPlanPrice(15);
+                    break;
+            }
         }
+
+
     }
 
-    const setPrice = () => {
-        if (planName === "Arcade" && billingType === "Monthly") {
-            setPlanPrice(9);
-        } else {
-            setPlanPrice(90);
+    //const [nameOfPlan, setNameOfPlan] = useState("");
+    let price;
+    let name;
+
+    const setNameOfPlan = (name) => {
+        //planName = name;
+
+        switch (name) {
+            case "Arcade":
+                setPlanName(name);
+                break;
+
+            case "Advanced":
+                setPlanName(name);
+                break;
+
+            case "Pro":
+                setPlanName(name);
+                break;
         }
 
-        if (planName === "Advanced" && billingType === "Monthly") {
-            setPlanPrice(12);
-        } else {
-            setPlanPrice(120);
+        //console.log(`plan name is: ${planName}`);
+    }
+
+    const setPlanDetails = (n, p, b) => {
+        const planDetails = {
+            name: n,
+            price: p,
+            billing: b,
+        }
+        //console.log(planDetails);
+
+        if (!localStorage.getItem('plan-details')) {
+            localStorage.setItem('plan-details', JSON.stringify([]));
         }
 
-        if (planName === "Pro" && billingType === "Monthly") {
-            setPlanPrice(15);
-        } else {
-            setPlanPrice(150);
-        }
+        const localStorageItem = JSON.parse(localStorage.getItem("plan-details"));
+        //localStorageItem.push(planDetails);
+        console.log(planDetails);
+        //localStorage.setItem("plan-details", JSON.stringify(localStorageItem));
+
     }
 
     useEffect(() => {
@@ -75,9 +129,42 @@ export function Plan({ activeStepIndex, setActiveStepIndex, billingType, setBill
                 this.className += " active";
             });
         }
-    }, [])
 
-    // console.log(`current step: ${activeStepIndex}`);
+        //setPlanDetails(planName, planPrice, billingType);
+
+        const planDetails = {
+            name: planName,
+            price: planPrice,
+            billing: billingType,
+        }
+
+        if (!localStorage.getItem('plan-details')) {
+            localStorage.setItem('plan-details', JSON.stringify([]));
+        } 
+        // else {
+        //     localStorage.removeItem("plan-details");
+        // }
+
+        
+        const localStorageItem = JSON.parse(localStorage.getItem("plan-details"));
+        localStorageItem.push(planDetails);
+        console.log(planDetails);
+
+        if (localStorageItem.length < 1) {
+
+        }
+        localStorage.setItem("plan-details", JSON.stringify(localStorageItem));
+
+        ////plan-details is being set twice for some reason
+        // console.log(planDetails);
+
+        // if (planDetails.length > 1) {
+
+        // }
+
+        // console.log('i fire once');
+
+    }, [billingType, planPrice, planName])
 
     return (
         <>
@@ -93,7 +180,7 @@ export function Plan({ activeStepIndex, setActiveStepIndex, billingType, setBill
 
                                 <div className='plans'>
                                     <div id='plan-types'>
-                                        <div className='named-plan' id='arcade-plan' onClick={(e) => {setPlanName("Arcade"); setPrice()}}> {/*onClick={(e) => {selectPlan(e.target)}}     selectPlan(e.target.id) */}
+                                        <div className='named-plan' id='arcade-plan' onClick={(e) => { setNameOfPlan("Arcade"); billingType === "Monthly" ? setPlanPrice(9) : setPlanPrice(90); }}> {/* setPriceOfPlan(planName) */}
                                             <img src='/assets/images/icon-arcade.svg' />
                                             <p className='plan-name'>Arcade</p>
                                             {isToggleChecked ? (
@@ -103,7 +190,7 @@ export function Plan({ activeStepIndex, setActiveStepIndex, billingType, setBill
                                             <p className='offer'>2 months free</p>
                                         </div>
 
-                                        <div className='named-plan' id='advanced-plan' onClick={(e) => {setPlanName("Advanced"); setPrice()}}>
+                                        <div className='named-plan' id='advanced-plan' onClick={(e) => { setNameOfPlan("Advanced"); billingType === "Monthly" ? setPlanPrice(12) : setPlanPrice(120); }}> {/* setPriceOfPlan(planName) */}
                                             <img src='/assets/images/icon-advanced.svg' />
                                             <p className='plan-name'>Advanced</p>
                                             {isToggleChecked ? (
@@ -113,7 +200,7 @@ export function Plan({ activeStepIndex, setActiveStepIndex, billingType, setBill
                                             <p className='offer'>2 months free</p>
                                         </div>
 
-                                        <div className='named-plan' id='pro-plan' onClick={(e) => {setPlanName("Pro"); setPrice()}}>
+                                        <div className='named-plan' id='pro-plan' onClick={(e) => { setNameOfPlan("Pro"); billingType === "Monthly" ? setPlanPrice(15) : setPlanPrice(150); }}> {/* setPriceOfPlan(planName) */}
                                             <img src='/assets/images/icon-pro.svg' />
                                             <p className='plan-name'>Pro</p>
                                             {isToggleChecked ? (

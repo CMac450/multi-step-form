@@ -14,8 +14,10 @@ function App() {
   const [billingType, setBillingType] = useState("Monthly");
   const [planName, setPlanName] = useState("Arcade");
   const [planPrice, setPlanPrice] = useState(9);
-  const [addOn, setAddOn] = useState("");
-  const [addOnPrice, setAddOnPrice] = useState(0);
+  const [addOn, setAddOn] = useState("Online-service");
+  const [addOnPrice, setAddOnPrice] = useState(1);
+  const [addOnDetails, setAddOnDetails] = ([]);
+  //let planPrice;
 
   return (
     <>
@@ -35,6 +37,7 @@ function App() {
           planName={planName}
           setPlanName={setPlanName}
           setPlanPrice={setPlanPrice}
+          planPrice={planPrice}
           StepsComponent={StepsComponent}
         />
       ) : activeStepIndex === 2 ? (
@@ -49,6 +52,8 @@ function App() {
           setAddOn={setAddOn}
           addOnPrice={addOnPrice}
           setAddOnPrice={setAddOnPrice}
+          addOnDetails={addOnDetails}
+          setAddOnDetails={setAddOnDetails}
         />
       ) : activeStepIndex === 3 ? (
         <Summary
@@ -62,6 +67,8 @@ function App() {
           setAddOn={setAddOn}
           addOnPrice={addOnPrice}
           setAddOnPrice={setAddOnPrice}
+          addOnDetails={addOnDetails}
+          setAddOnDetails={setAddOnDetails}
         />
       ) : (
         <Thankyou

@@ -29,7 +29,7 @@
 }
 
 .card-body-left {
-  background-image: url("assets/images/bg-sidebar-desktop.svg");
+  background-image: url("images/bg-sidebar-desktop.svg");
   background-repeat: no-repeat;
   background-size:cover;
   width: 40%;

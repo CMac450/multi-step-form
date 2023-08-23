@@ -12,14 +12,6 @@ export function Addons({ activeStepIndex, setActiveStepIndex, billingType, Steps
         setActiveStepIndex(activeStepIndex - 1);
     }
 
-    // console.log(JSON.parse(localStorage.getItem("add-ons")));  //////testing
-
-    const [isChecked, setIsChecked] = useState(false);
-
-    // useEffect(() => {
-
-    // }, [])
-
     const setCheckedAddOn = (e) => {
         const parentElementId = e.target.parentElement.id;
         const element = document.getElementById(parentElementId);
@@ -42,95 +34,96 @@ export function Addons({ activeStepIndex, setActiveStepIndex, billingType, Steps
                     this.style.border = "1px solid hsl(243, 100%, 62%)";
                 });
 
-
-                const addOnContainer = document.getElementById("add-on-container");
-                const activeElements = addOnContainer.getElementsByClassName("active");
-                let a;
-                let ap;
+                let item;
+                let itemPrice;
 
                 const nameArray = [];
 
                 switch (parentElementId) {
                     case "online-service":
-                        a = "Online service";
+                        item = "Online service";
                         switch (billingType) {
                             case "Monthly":
-                                ap = 1;
+                                itemPrice = 1;
                                 break;
                             case "Yearly":
-                                ap = 10;
+                                itemPrice = 10;
                                 break;
                         }
 
-                        let array1 = { name: a, price: ap };
-
+                        let onlineAddOnDetails = { name: item, price: itemPrice };
+                        //check length of storage array
                         if (localStorageItem.length > 0) {
                             for (let i = 0; i < localStorageItem.length; i++) {
+                                //push all name values into new array
                                 nameArray.push(localStorageItem[i].name);
                             }
 
-                            if (!nameArray.includes(a)) {
-                                localStorageItem.push(array2);
+                            //if new array doesn't include add-on service name, 
+                            //then push the service details into local storage
+                            if (!nameArray.includes(item)) {
+                                localStorageItem.push(onlineAddOnDetails);
                                 localStorage.setItem("add-ons", JSON.stringify(localStorageItem));
                             }
 
+                        //
                         } else {
-                            localStorageItem.push(array1);
+                            localStorageItem.push(onlineAddOnDetails);
                             localStorage.setItem("add-ons", JSON.stringify(localStorageItem));
                         }
 
                         break;
                     case "extra-storage":
-                        a = "Extra storage";
+                        item = "Extra storage";
                         switch (billingType) {
                             case "Monthly":
-                                ap = 2;
+                                itemPrice = 2;
                                 break;
                             case "Yearly":
-                                ap = 20;
+                                itemPrice = 20;
                                 break;
                         }
 
-                        let array2 = { name: a, price: ap };
+                        let storageAddOnDetails = { name: item, price: itemPrice };
                         if (localStorageItem.length > 0) {
                             for (let i = 0; i < localStorageItem.length; i++) {
                                 nameArray.push(localStorageItem[i].name);
                             }
 
-                            if (!nameArray.includes(a)) {
-                                localStorageItem.push(array2);
+                            if (!nameArray.includes(item)) {
+                                localStorageItem.push(storageAddOnDetails);
                                 localStorage.setItem("add-ons", JSON.stringify(localStorageItem));
                             }
 
                         } else {
-                            localStorageItem.push(array2);
+                            localStorageItem.push(storageAddOnDetails);
                             localStorage.setItem("add-ons", JSON.stringify(localStorageItem));
                         }
                         break;
                     case "customizable-profile":
-                        a = "Customizable profile";
+                        item = "Customizable profile";
                         switch (billingType) {
                             case "Monthly":
-                                ap = 2;
+                                itemPrice = 2;
                                 break;
                             case "Yearly":
-                                ap = 20;
+                                itemPrice = 20;
                                 break;
                         }
 
-                        let array3 = { name: a, price: ap }
+                        let profileAddOnDetails = { name: item, price: itemPrice }
                         if (localStorageItem.length > 0) {
                             for (let i = 0; i < localStorageItem.length; i++) {
                                 nameArray.push(localStorageItem[i].name);
                             }
 
-                            if (!nameArray.includes(a)) {
-                                localStorageItem.push(array3);
+                            if (!nameArray.includes(item)) {
+                                localStorageItem.push(profileAddOnDetails);
                                 localStorage.setItem("add-ons", JSON.stringify(localStorageItem));
                             }
 
                         } else {
-                            localStorageItem.push(array3);
+                            localStorageItem.push(profileAddOnDetails);
                             localStorage.setItem("add-ons", JSON.stringify(localStorageItem));
                         }
 
@@ -149,13 +142,10 @@ export function Addons({ activeStepIndex, setActiveStepIndex, billingType, Steps
                     this.style.border = "1px solid hsl(243, 100%, 62%)";
                 });
 
-                let names = [];
                 let serviceToRemove;
                 let indexPosInStorage;
-
-                switch (parentElementId) {
-                    
-
+                ////remove add-on from storage array on checked = false and set updated value of array
+                switch (parentElementId) {                  
                     case "online-service":
                         serviceToRemove = "Online service";
 
@@ -205,6 +195,54 @@ export function Addons({ activeStepIndex, setActiveStepIndex, billingType, Steps
         }
     }
 
+    useEffect(() => {
+        ///check for add-ons storage item
+        ///if value exists, get name and match to id
+        ///set id checkbox to have checked property/css
+        let localStorageItem = JSON.parse(localStorage.getItem("add-ons"));
+        const addOn1 = document.getElementById("online-service");
+        const cbox1 = document.getElementById("checkbox-online");
+        const addOn2 = document.getElementById("extra-storage");
+        const cbox2 = document.getElementById("checkbox-storage");
+        const addOn3 = document.getElementById("customizable-profile");
+        const cbox3 = document.getElementById("checkbox-profile");
+        let addOnList = [];
+
+        if(localStorageItem.length > 0) {
+            for (let i = 0; i < localStorageItem.length; i++) {
+                const arrayItem = localStorageItem[i].name;
+                addOnList.push(arrayItem);
+            }
+
+            if(addOnList.includes("Online service")) {
+                addOn1.style.backgroundColor = "hsl(231, 100%, 99%)";
+                addOn1.style.border = "1px solid hsl(243, 100%, 62%)";
+                addOn1.onmouseout = (function () {
+                    this.style.border = "1px solid hsl(243, 100%, 62%)";
+                });
+                cbox1.checked = true;
+            }
+
+            if(addOnList.includes("Extra storage")) {
+                addOn2.style.backgroundColor = "hsl(231, 100%, 99%)";
+                addOn2.style.border = "1px solid hsl(243, 100%, 62%)";
+                addOn2.onmouseout = (function () {
+                    this.style.border = "1px solid hsl(243, 100%, 62%)";
+                });
+                cbox2.checked = true;
+            }
+
+            if(addOnList.includes("Customizable profile")) {
+                addOn3.style.backgroundColor = "hsl(231, 100%, 99%)";
+                addOn3.style.border = "1px solid hsl(243, 100%, 62%)";
+                addOn3.onmouseout = (function () {
+                    this.style.border = "1px solid hsl(243, 100%, 62%)";
+                });
+                cbox3.checked = true;
+            }
+        }
+    },[])
+
     return (
         <>
             <h1>Step 3</h1>
@@ -219,7 +257,7 @@ export function Addons({ activeStepIndex, setActiveStepIndex, billingType, Steps
 
                                 <div id='add-on-container'>
                                     <div className='add-on' id="online-service">
-                                        <input id="chkbx" type='checkbox'
+                                        <input id="checkbox-online" type='checkbox'
                                             onClick={(e) => {
                                                 setCheckedAddOn(e);
                                             }}
@@ -236,7 +274,7 @@ export function Addons({ activeStepIndex, setActiveStepIndex, billingType, Steps
                                     </div>
 
                                     <div className='add-on' id="extra-storage">
-                                        <input id="chkbx" type='checkbox'
+                                        <input id="checkbox-storage" type='checkbox'
                                             onClick={(e) => {
                                                 setCheckedAddOn(e);
                                             }}
@@ -253,7 +291,7 @@ export function Addons({ activeStepIndex, setActiveStepIndex, billingType, Steps
                                     </div>
 
                                     <div className='add-on' id="customizable-profile">
-                                        <input id="chkbx" type='checkbox'
+                                        <input id="checkbox-profile" type='checkbox'
                                             onClick={(e) => {
                                                 setCheckedAddOn(e);
                                             }}

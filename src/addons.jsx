@@ -199,6 +199,10 @@ export function Addons({ activeStepIndex, setActiveStepIndex, billingType, Steps
         ///check for add-ons storage item
         ///if value exists, get name and match to id
         ///set id checkbox to have checked property/css
+        //if local storage item not exists, set it
+        if (!localStorage.getItem('add-ons')) {
+            localStorage.setItem('add-ons', JSON.stringify([]));
+        }
         let localStorageItem = JSON.parse(localStorage.getItem("add-ons"));
         const addOn1 = document.getElementById("online-service");
         const cbox1 = document.getElementById("checkbox-online");

@@ -8,23 +8,24 @@ export function PersonalInfo({ activeStepIndex, setActiveStepIndex, StepsCompone
         setActiveStepIndex(step + 1);
     }
 
-    // console.log(`current step: ${activeStepIndex}`);
-    const [showEmptyFieldError, setShowEmptyFieldError] = useState(true);
-    const [showFormatError, setShowFormatError] = useState(true);
-    // const [showInputError, setInputError] = useState(false);
+    // const [showEmptyFieldError, setShowEmptyFieldError] = useState(true); //true
+    const [showEmptyNameFieldError, setShowNameEmptyFieldError] = useState(true); //true
+    const [showEmptyPhoneFieldError, setShowEmptyPhoneFieldError] = useState(true); //true
+    const [showEmptyEmailFieldError, setShowEmptyEmailFieldError] = useState(true); //true
+    const [showFormatError, setShowFormatError] = useState(true); //true
+    const [isFormValid, setIsFormValid] =useState(false);
+
 
     const validateInput = (event) => {
         event.preventDefault();
         let name = document.getElementById('name').value;
         let phone = document.getElementById('phone').value;
         let email = document.getElementById('email').value;
-        let emailPattern = new RegExp('^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$');
+        let emailPattern = new RegExp('[a-zA-Z0-9]+\.[a-zA-Z0-9]+@lorem\.com');
 
         switch (name) {
             case "":
-                setShowEmptyFieldError(true);
-                setShowFormatError(false); ////needed here????
-                //setInputError(true);
+                setShowNameEmptyFieldError(true);
                 document.getElementById("name").style.outline = "1px solid hsl(0, 100%, 67%)";
                 document.getElementById("name").style.backgroundColor = "hsla(4, 100%, 80%, 0.26)";
                 document.getElementById("name").style.color = "hsl(0, 100%, 67%)";
@@ -32,24 +33,20 @@ export function PersonalInfo({ activeStepIndex, setActiveStepIndex, StepsCompone
                 document.getElementById("name-error").style.display = "inline";
                 document.getElementById("name-error").style.fontSize = "10px";
                 document.getElementById("name-error").style.color = "hsl(0, 100%, 67%)";
-                console.log('HIT 1: name field is empty');
-                break;
+            break;
             default:
-                setShowEmptyFieldError(false);
-                setShowFormatError(false);
+                setShowNameEmptyFieldError(false);
                 document.getElementById("name").style.outline = "1px solid hsl(0, 0%, 83%)";
                 document.getElementById("name").style.backgroundColor = "hsla(4, 100%, 80%, 0)";
                 document.getElementById("name").style.color = "hsl(0, 0%, 30%)";
 
                 document.getElementById("name-error").style.display = "none";
-                console.log('HIT 2: name field is NOT empty');
-                break;
+            break;
         }
 
         switch (phone) {
             case "":
-                setShowEmptyFieldError(true);
-                setShowFormatError(false);
+                setShowEmptyPhoneFieldError(true);
                 document.getElementById("phone").style.outline = "1px solid hsl(0, 100%, 67%)";
                 document.getElementById("phone").style.backgroundColor = "hsla(4, 100%, 80%, 0.26)";
                 document.getElementById("phone").style.color = "hsl(0, 100%, 67%)";
@@ -57,23 +54,19 @@ export function PersonalInfo({ activeStepIndex, setActiveStepIndex, StepsCompone
                 document.getElementById("phone-error").style.display = "inline";
                 document.getElementById("phone-error").style.fontSize = "10px";
                 document.getElementById("phone-error").style.color = "hsl(0, 100%, 67%)";
-                console.log('HIT 3: phone field is empty');
-                break;
+            break;
             default:
-                setShowEmptyFieldError(false);
-                setShowFormatError(false);
+                setShowEmptyPhoneFieldError(false);
                 document.getElementById("phone").style.outline = "1px solid hsl(0, 0%, 83%)";
                 document.getElementById("phone").style.backgroundColor = "hsla(4, 100%, 80%, 0)";
                 document.getElementById("phone").style.color = "hsl(0, 0%, 30%)";
                 document.getElementById("phone-error").style.display = "none";
-                console.log('HIT 4: phone field is NOT empty');
-                break;
+            break;
         }
 
         switch (email) {
             case "":
-                setShowEmptyFieldError(true);
-                setShowFormatError(false);
+                setShowEmptyEmailFieldError(true);
                 document.getElementById("email").style.outline = "1px solid hsl(0, 100%, 67%)";
                 document.getElementById("email").style.backgroundColor = "hsla(4, 100%, 80%, 0.26)";
                 document.getElementById("email").style.color = "hsl(0, 100%, 67%)";
@@ -81,16 +74,13 @@ export function PersonalInfo({ activeStepIndex, setActiveStepIndex, StepsCompone
                 document.getElementById("email-error").style.display = "inline";
                 document.getElementById("email-error").style.fontSize = "10px";
                 document.getElementById("email-error").style.color = "hsl(0, 100%, 67%)";
-                console.log('HIT 5: email field is empty');
                 break;
             default:
-                setShowEmptyFieldError(false);
-                setShowFormatError(false);
+                setShowEmptyEmailFieldError(false);
                 document.getElementById("email").style.outline = "1px solid hsl(0, 0%, 83%)";
                 document.getElementById("email").style.backgroundColor = "hsla(4, 100%, 80%, 0)";
                 document.getElementById("email").style.color = "hsl(0, 0%, 30%)";
                 document.getElementById("email-error").style.display = "none";
-                console.log('HIT 6: email field is NOT empty');
 
                 switch (emailPattern.test(email)) {
                     case true:
@@ -98,33 +88,31 @@ export function PersonalInfo({ activeStepIndex, setActiveStepIndex, StepsCompone
                         document.getElementById("email").style.outline = "1px solid hsl(0, 0%, 83%)";
                         document.getElementById("email").style.backgroundColor = "hsla(4, 100%, 80%, 0)";
                         document.getElementById("email").style.color = "hsl(0, 0%, 30%)";
-                        console.log('HIT 7: email matches pattern');
+                        document.getElementById("email-format-error").style.display = "none";
                         break;
                     case false:
-                        setShowEmptyFieldError(false);
+                        setShowEmptyEmailFieldError(false);
                         setShowFormatError(true);
                         document.getElementById("email").style.outline = "1px solid hsl(0, 100%, 67%)";
                         document.getElementById("email").style.backgroundColor = "hsla(4, 100%, 80%, 0.26)";
                         document.getElementById("email").style.color = "hsl(0, 100%, 67%)";
-                        console.log('HIT 8: email does NOT match pattern');
+
+                        document.getElementById("email-format-error").style.display = "inline";
+                        document.getElementById("email-format-error").style.fontSize = "10px";
+                        document.getElementById("email-format-error").style.color = "hsl(0, 100%, 67%)";
                         break;
                 }
                 break;
         }
 
-        if ((showEmptyFieldError && showFormatError) || (showEmptyFieldError || showFormatError)) {
-            console.log('your form has errors!');
-            console.log(`showEmptyFieldError: ${showEmptyFieldError}`);
-            console.log(`showEmptyFieldError: ${showFormatError}`);
-        }
-        else {
-            console.log(`no errors to report`);
-            console.log(`showEmptyFieldError: ${showEmptyFieldError}`);
-            console.log(`showEmptyFieldError: ${showFormatError}`);
+        if (!showEmptyNameFieldError && !showEmptyPhoneFieldError && !showEmptyEmailFieldError && !showFormatError) {
+            //setIsFormValid(true);
             moveToNextStep(activeStepIndex);
+        } else if (showEmptyNameFieldError || showEmptyPhoneFieldError || showEmptyEmailFieldError || showFormatError) {
+            setIsFormValid(false);
         }
-
     }
+
 
     return (
         <>
@@ -139,51 +127,32 @@ export function PersonalInfo({ activeStepIndex, setActiveStepIndex, StepsCompone
                                 <p>Please provide your name, email, address, and phone number.</p>
 
                                 <label htmlFor='name' >Name</label>
-                                {/* {showInputError ? (
-                                    <div id='user-info-error'>
-                                        <span>Name is required</span>
-                                    </div>
-                                ) : (
-                                    <></>
-                                )} */}
                                 <div className='user-info-error' id="name-error">
                                     <span>Name is required</span>
                                 </div>
-                                <input type='text' id='name' placeholder='e.g. Stephen King' required></input>
+                                <input type='text' id='name' placeholder='e.g. Stephen King' ></input>
 
 
                                 <label htmlFor='email'>Email Address</label>
-                                {/* {showInputError ? (
-                                    <div id='user-info-error'>
-                                        <span>Email address is required</span>
-                                    </div>
-                                ) : (
-                                    <></>
-                                )} */}
                                 <div className='user-info-error' id="email-error">
                                     <span>Email address is required</span>
                                 </div>
-                                <input type='email' id='email' placeholder='e.g. stephenking@lorem.com' required></input>
+                                <div className='user-info-error' id="email-format-error">
+                                    <span>Email must end in '@lorem.com'</span>
+                                </div>
+                                <input type='email' id='email' placeholder='e.g. stephenking@lorem.com'></input>
 
 
                                 <label htmlFor='phone'>Phone Number</label>
-                                {/* {showInputError ? (
-                                    <div id='user-info-error'>
-                                        <span>Phone is required</span>
-                                    </div>
-                                ) : (
-                                    <></>
-                                )} */}
                                 <div className='user-info-error' id="phone-error">
                                     <span>Phone is required</span>
                                 </div>
-                                <input type='tel' id='phone' placeholder='e.g. +1 234 567 890' required></input>
+                                <input type='tel' id='phone' placeholder='e.g. +1 234 567 890'></input>
 
 
                             </div>
                             <div className='card-body-right-bottom'>
-                                {/* <button className='prev-step-btn' label='Next Step'>Go back</button> */}
-                                <button className='next-step-btn' label='Next Step' onClick={(e) => { (!showEmptyFieldError && !showFormatError) ? moveToNextStep(activeStepIndex) : validateInput(e); }}>Next Step</button> {/*(setInputError(true), validateInput(e)) */}
+                                <button className='next-step-btn' label='Next Step' onClick={(e) => { isFormValid ? moveToNextStep(activeStepIndex) : validateInput(e); }}>Next Step</button> {/*most recent: { (showEmptyFieldError === false) && (showFormatError === false) ? moveToNextStep(activeStepIndex) : validateInput(e); }*/} {/*(setInputError(true), validateInput(e))         { (!showEmptyFieldError && !showFormatError) ? moveToNextStep(activeStepIndex) : validateInput(e); }*/}
                             </div>
                         </div>
                     </div>

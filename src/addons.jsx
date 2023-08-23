@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import './App.css';
 import './addons.css';
 
@@ -25,7 +25,7 @@ export function Addons({ activeStepIndex, setActiveStepIndex, billingType, Steps
         }
 
         const localStorageItem = JSON.parse(localStorage.getItem("add-ons")); // || [];
-        
+
         switch (e.target.checked) {
             case true:
                 document.getElementById(parentElementId).style.backgroundColor = "hsl(231, 100%, 99%)";
@@ -66,7 +66,7 @@ export function Addons({ activeStepIndex, setActiveStepIndex, billingType, Steps
                                 localStorage.setItem("add-ons", JSON.stringify(localStorageItem));
                             }
 
-                        //
+                            //
                         } else {
                             localStorageItem.push(onlineAddOnDetails);
                             localStorage.setItem("add-ons", JSON.stringify(localStorageItem));
@@ -145,53 +145,53 @@ export function Addons({ activeStepIndex, setActiveStepIndex, billingType, Steps
                 let serviceToRemove;
                 let indexPosInStorage;
                 ////remove add-on from storage array on checked = false and set updated value of array
-                switch (parentElementId) {                  
+                switch (parentElementId) {
                     case "online-service":
                         serviceToRemove = "Online service";
 
                         if (localStorageItem.length > 0) {
                             for (let i = 0; i < localStorageItem.length; i++) {
                                 const arrayItem = localStorageItem[i];
-      
-                                if(arrayItem.name === serviceToRemove) { 
+
+                                if (arrayItem.name === serviceToRemove) {
                                     indexPosInStorage = localStorageItem.indexOf(arrayItem);
                                     localStorageItem.splice(indexPosInStorage, 1);
                                     localStorage.setItem("add-ons", JSON.stringify(localStorageItem));
                                 }
                             }
-                        }                    
-                    break;
+                        }
+                        break;
                     case "extra-storage":
                         serviceToRemove = "Extra storage";
                         if (localStorageItem.length > 0) {
                             for (let i = 0; i < localStorageItem.length; i++) {
                                 const arrayItem = localStorageItem[i];
 
-                                if(arrayItem.name === serviceToRemove) {
+                                if (arrayItem.name === serviceToRemove) {
                                     indexPosInStorage = localStorageItem.indexOf(arrayItem);
                                     localStorageItem.splice(indexPosInStorage, 1);
                                     localStorage.setItem("add-ons", JSON.stringify(localStorageItem));
                                 }
                             }
                         }
-                    break;
+                        break;
                     case "customizable-profile":
-                        serviceToRemove = "Customizable profile";                     
+                        serviceToRemove = "Customizable profile";
                         if (localStorageItem.length > 0) {
                             for (let i = 0; i < localStorageItem.length; i++) {
                                 const arrayItem = localStorageItem[i];
-                                
-                                if(arrayItem.name === serviceToRemove) {
+
+                                if (arrayItem.name === serviceToRemove) {
                                     indexPosInStorage = localStorageItem.indexOf(arrayItem);
                                     localStorageItem.splice(indexPosInStorage, 1);
                                     localStorage.setItem("add-ons", JSON.stringify(localStorageItem));
                                 }
                             }
                         }
-                    break;
+                        break;
                 }
 
-            break;
+                break;
         }
     }
 
@@ -208,13 +208,13 @@ export function Addons({ activeStepIndex, setActiveStepIndex, billingType, Steps
         const cbox3 = document.getElementById("checkbox-profile");
         let addOnList = [];
 
-        if(localStorageItem.length > 0) {
+        if (localStorageItem.length > 0) {
             for (let i = 0; i < localStorageItem.length; i++) {
                 const arrayItem = localStorageItem[i].name;
                 addOnList.push(arrayItem);
             }
 
-            if(addOnList.includes("Online service")) {
+            if (addOnList.includes("Online service")) {
                 addOn1.style.backgroundColor = "hsl(231, 100%, 99%)";
                 addOn1.style.border = "1px solid hsl(243, 100%, 62%)";
                 addOn1.onmouseout = (function () {
@@ -223,7 +223,7 @@ export function Addons({ activeStepIndex, setActiveStepIndex, billingType, Steps
                 cbox1.checked = true;
             }
 
-            if(addOnList.includes("Extra storage")) {
+            if (addOnList.includes("Extra storage")) {
                 addOn2.style.backgroundColor = "hsl(231, 100%, 99%)";
                 addOn2.style.border = "1px solid hsl(243, 100%, 62%)";
                 addOn2.onmouseout = (function () {
@@ -232,7 +232,7 @@ export function Addons({ activeStepIndex, setActiveStepIndex, billingType, Steps
                 cbox2.checked = true;
             }
 
-            if(addOnList.includes("Customizable profile")) {
+            if (addOnList.includes("Customizable profile")) {
                 addOn3.style.backgroundColor = "hsl(231, 100%, 99%)";
                 addOn3.style.border = "1px solid hsl(243, 100%, 62%)";
                 addOn3.onmouseout = (function () {
@@ -241,7 +241,7 @@ export function Addons({ activeStepIndex, setActiveStepIndex, billingType, Steps
                 cbox3.checked = true;
             }
         }
-    },[])
+    }, [])
 
     return (
         <>

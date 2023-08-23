@@ -5,7 +5,6 @@
   text-align: center;
 }
 
-
 .container {
   /* width: auto;
   height: auto; */
@@ -77,16 +76,12 @@
   height: 30px;
   font-weight: bold;
   align-self: center;  
-  /* align-content: center;
-  align-items: center; */
-  /* background-color: hsl(206, 94%, 87%); */ /*active: hsl(206, 94%, 87%)*/
 }
 
 .step-description {
   text-align: left;
   padding-left: 15px;
   text-transform: uppercase;
-  /* align-items: center; */
 }
 
 .step-description p {
@@ -100,10 +95,6 @@
   color: hsl(229, 24%, 87%);
   font-size: 12px;
 }
-
-
-
-
 
 button {
   cursor: pointer;

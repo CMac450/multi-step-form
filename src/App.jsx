@@ -17,7 +17,6 @@ function App() {
   const [addOn, setAddOn] = useState("Online-service");
   const [addOnPrice, setAddOnPrice] = useState(1);
   const [addOnDetails, setAddOnDetails] = ([]);
-  //let planPrice;
 
   return (
     <>
@@ -45,15 +44,7 @@ function App() {
           activeStepIndex={activeStepIndex}
           setActiveStepIndex={setActiveStepIndex}
           billingType={billingType}
-          planName={planName}
-          planPrice={planPrice}
           StepsComponent={StepsComponent}
-          addOn={addOn}
-          setAddOn={setAddOn}
-          addOnPrice={addOnPrice}
-          setAddOnPrice={setAddOnPrice}
-          addOnDetails={addOnDetails}
-          setAddOnDetails={setAddOnDetails}
         />
       ) : activeStepIndex === 3 ? (
         <Summary
@@ -63,12 +54,6 @@ function App() {
           planName={planName}
           planPrice={planPrice}
           StepsComponent={StepsComponent}
-          addOn={addOn}
-          setAddOn={setAddOn}
-          addOnPrice={addOnPrice}
-          setAddOnPrice={setAddOnPrice}
-          addOnDetails={addOnDetails}
-          setAddOnDetails={setAddOnDetails}
         />
       ) : (
         <Thankyou

@@ -21,8 +21,6 @@
 }
 
 .plan-details {
-    /* display: flex;
-    flex-direction: row; */
     display: inline;
     margin-bottom: 20px;
 }
@@ -36,13 +34,9 @@
 }
 
 .plan-name-summary-span, .plan-price-summary-span {
-    /* margin-top: 20px;
-    margin-bottom: 5px; */
     color: hsl(213, 96%, 18%);
     font-weight: bold;
 }
-
-
 
 .add-on-row-container {
     display: flex;
@@ -50,27 +44,18 @@
 }
 
 .add-on-row{
-    /* display: flex;
-    flex-direction: row; */
     display: inline;
     margin-top: 20px;
     font-size: 14px;
 }
 
 .add-on-row-left {
-    /* display: flex;
-    flex-direction: row; */
-    /* text-align: left; */
-    /* margin: 0 auto; */
     float: left;
     color: hsl(231, 11%, 63%);
 
 }
 
 .add-on-row-right{ 
-    /* float: right */
-    /* text-align: right; */
-    /* margin: 0 auto; */
     float: right;
     color: hsl(213, 96%, 18%);
 }
@@ -93,17 +78,8 @@
     font-size: 18px;
 }
 
-.total-text, .total-price {
-    /* margin: 0 auto; */
-}
-
-.total-price {
-    /* margin: 0 auto; */
-}
-
 hr {
     border: .5px solid hsl(229, 24%, 87%);
- 
 }
 
 .confirm-btn {

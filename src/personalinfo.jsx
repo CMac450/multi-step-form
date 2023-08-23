@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import './App.css'
 import './personalinfo.css'
 
@@ -8,11 +8,10 @@ export function PersonalInfo({ activeStepIndex, setActiveStepIndex, StepsCompone
         setActiveStepIndex(step + 1);
     }
 
-    // const [showEmptyFieldError, setShowEmptyFieldError] = useState(true); //true
-    const [showEmptyNameFieldError, setShowNameEmptyFieldError] = useState(true); //true
-    const [showEmptyPhoneFieldError, setShowEmptyPhoneFieldError] = useState(true); //true
-    const [showEmptyEmailFieldError, setShowEmptyEmailFieldError] = useState(true); //true
-    const [showFormatError, setShowFormatError] = useState(true); //true
+    const [showEmptyNameFieldError, setShowNameEmptyFieldError] = useState(true);
+    const [showEmptyPhoneFieldError, setShowEmptyPhoneFieldError] = useState(true);
+    const [showEmptyEmailFieldError, setShowEmptyEmailFieldError] = useState(true);
+    const [showFormatError, setShowFormatError] = useState(true);
     const [isFormValid, setIsFormValid] =useState(false);
 
 
@@ -106,7 +105,6 @@ export function PersonalInfo({ activeStepIndex, setActiveStepIndex, StepsCompone
         }
 
         if (!showEmptyNameFieldError && !showEmptyPhoneFieldError && !showEmptyEmailFieldError && !showFormatError) {
-            //setIsFormValid(true);
             moveToNextStep(activeStepIndex);
         } else if (showEmptyNameFieldError || showEmptyPhoneFieldError || showEmptyEmailFieldError || showFormatError) {
             setIsFormValid(false);
@@ -152,7 +150,7 @@ export function PersonalInfo({ activeStepIndex, setActiveStepIndex, StepsCompone
 
                             </div>
                             <div className='card-body-right-bottom'>
-                                <button className='next-step-btn' label='Next Step' onClick={(e) => { isFormValid ? moveToNextStep(activeStepIndex) : validateInput(e); }}>Next Step</button> {/*most recent: { (showEmptyFieldError === false) && (showFormatError === false) ? moveToNextStep(activeStepIndex) : validateInput(e); }*/} {/*(setInputError(true), validateInput(e))         { (!showEmptyFieldError && !showFormatError) ? moveToNextStep(activeStepIndex) : validateInput(e); }*/}
+                                <button className='next-step-btn' label='Next Step' onClick={(e) => { isFormValid ? moveToNextStep(activeStepIndex) : validateInput(e); }}>Next Step</button>
                             </div>
                         </div>
                     </div>

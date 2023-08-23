@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import './App.css'
 
-export function StepsComponent({ activeStepIndex, setActiveStepIndex }) {
+export function StepsComponent({ activeStepIndex }) {
 
     useEffect(() => {
         switch (activeStepIndex) {
@@ -28,12 +28,6 @@ export function StepsComponent({ activeStepIndex, setActiveStepIndex }) {
                 document.getElementById("step-four").style.color = 'hsl(213, 96%, 18%)';
                 document.getElementById("step-four").style.backgroundColor = 'hsl(206, 94%, 87%)';
                 document.getElementById("step-four").style.border = '1px solid hsl(206, 94%, 87%)';
-            break;
-            case 4:
-                document.getElementById("step-five").style.fontWeight = 'bold';
-                document.getElementById("step-five").style.color = 'hsl(213, 96%, 18%)';
-                document.getElementById("step-five").style.backgroundColor = 'hsl(206, 94%, 87%)';
-                document.getElementById("step-five").style.border = '1px solid hsl(206, 94%, 87%)';
             break;
         }
     }, [])

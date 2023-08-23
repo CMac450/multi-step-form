@@ -2,56 +2,10 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import './summary.css';
 
-export function Summary({ activeStepIndex, setActiveStepIndex, billingType, planName, planPrice, StepsComponent, addOn, setAddOn, addOnPrice, setAddOnPrice, addOnDetails, setAddOnDetails }) {
-
-
+export function Summary({ activeStepIndex, setActiveStepIndex, billingType, planName, planPrice, StepsComponent }) {
 
     const [showConfirmation, setShowConfirmation] = useState(false);
-
-    // useEffect(() => {
-    //     ///get total price
-    //     console.log(`plan name: ${planName}, plan price: ${planPrice}, billing type: ${billingType}`);
-
-    //     const localStorageItem = JSON.parse(localStorage.getItem("add-ons"));
-    //     if (localStorageItem.length > 0) {
-    //         for (let i = 0; i < localStorageItem.length; i++) {
-    //             //nameArray.push(localStorageItem[i].name);
-    //             //console.log(localStorageItem[i].price);
-
-    //             let tp = planPrice;
-    //             tp += localStorageItem[i].price;
-    //             setTotalPrice(tp);
-
-    //         }
-    //         //console.log(`totalPrice: ${totalPrice}`);
-    //     }
-    //     //console.log(`totalPrice: ${totalPrice}`);
-    // }, [])
-
-
-
-    // console.log(`current step: ${activeStepIndex}`);
-    //console.log(addOnDetails)
-
-    // useEffect(() => {
-    //     ///get total price
-    //     let tp = planPrice;
-    //     const localStorageItem = JSON.parse(localStorage.getItem("add-ons"));
-    //     if (localStorageItem.length > 0) {
-    //         for (let i = 0; i < localStorageItem.length; i++) {
-    //             //nameArray.push(localStorageItem[i].name);
-    //             console.log(localStorageItem[i].price);
-    //             tp += localStorageItem[i].price;
-    //         }
-    //     }
-    //     console.log(`totalPrice: ${tp}`);
-    //     setTotalPrice(tp);
-    // }, [])
-
-    // let addOns = [];
-    // addOns = JSON.parse(localStorage.getItem("add-ons"));
-    //console.log(addOns);
-
+ 
     return (
         <>
             {
@@ -65,11 +19,7 @@ export function Summary({ activeStepIndex, setActiveStepIndex, billingType, plan
     )
 }
 
-function SummaryComponent({ StepsComponent, activeStepIndex, setActiveStepIndex, billingType, planName, planPrice, setShowConfirmation, showConfirmation }) {
-
-    const moveToNextStep = (activeStepIndex) => {
-        setActiveStepIndex(activeStepIndex + 1);
-    }
+function SummaryComponent({ StepsComponent, activeStepIndex, setActiveStepIndex, billingType, planName, planPrice, setShowConfirmation }) {
 
     const goBackToPreviousStep = (activeStepIndex) => {
         setActiveStepIndex(activeStepIndex - 1);
@@ -78,17 +28,14 @@ function SummaryComponent({ StepsComponent, activeStepIndex, setActiveStepIndex,
     const [totalPrice, setTotalPrice] = useState(0);
 
     useEffect(() => {
-        ///get total price
+        ///get total price on page load
         let tp = planPrice;
         const localStorageItem = JSON.parse(localStorage.getItem("add-ons"));
         if (localStorageItem.length > 0) {
             for (let i = 0; i < localStorageItem.length; i++) {
-                //nameArray.push(localStorageItem[i].name);
-                console.log(localStorageItem[i].price);
                 tp += localStorageItem[i].price;
             }
         }
-        console.log(`totalPrice: ${tp}`);
         setTotalPrice(tp);
     }, [])
 
@@ -109,7 +56,6 @@ function SummaryComponent({ StepsComponent, activeStepIndex, setActiveStepIndex,
                                 <div className='summary-container'>
                                     <div className='plan-details'>
                                         <div id="plan-name-summary"><span className='plan-name-summary-span'>{planName} ({billingType})</span></div>
-                                        {/* <span>${planPrice}/mo</span> */}
                                         {billingType === "Monthly" ? (
                                             <div id="plan-price-summary"><span className='plan-price-summary-span'>${planPrice}/mo</span></div>
                                         ) : (
@@ -123,9 +69,8 @@ function SummaryComponent({ StepsComponent, activeStepIndex, setActiveStepIndex,
 
                                     {addOns ? (
                                         addOns.map((item, index) => {
-                                            //console.log(item.name);
                                             return (
-                                                <div className='add-on-row-container'>
+                                                <div className='add-on-row-container' key={index}>
                                                     <div className='add-on-row'>
                                                         <div className='add-on-row-left'><span>{item.name}</span></div>
                                                         {billingType === "Monthly" ? (

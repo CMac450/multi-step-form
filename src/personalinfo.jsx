@@ -114,7 +114,6 @@ export function PersonalInfo({ activeStepIndex, setActiveStepIndex, StepsCompone
 
     return (
         <>
-            <h1>Step 1</h1>
             <div className='container'>
                 <div className='card'>
                     <div className='card-body'>

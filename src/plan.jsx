@@ -133,7 +133,6 @@ export function Plan({ activeStepIndex, setActiveStepIndex, billingType, setBill
 
     return (
         <>
-            <h1>Step 2</h1>
             <div className='container'>
                 <div className='card'>
                     <div className='card-body'>

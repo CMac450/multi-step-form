@@ -245,7 +245,6 @@ export function Addons({ activeStepIndex, setActiveStepIndex, billingType, Steps
 
     return (
         <>
-            <h1>Step 3</h1>
             <div className='container'>
                 <div className='card'>
                     <div className='card-body'>

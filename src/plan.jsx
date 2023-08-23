@@ -145,7 +145,7 @@ export function Plan({ activeStepIndex, setActiveStepIndex, billingType, setBill
                                 <div className='plans'>
                                     <div id='plan-types'>
                                         <div className='named-plan' id='arcade-plan' onClick={(e) => { setNameOfPlan("Arcade"); billingType === "Monthly" ? setPlanPrice(9) : setPlanPrice(90); }}>
-                                            <img src='/assets/images/icon-arcade.svg' />
+                                            <img src='/assets/images/icon-arcade.svg' alt="orange circle with a white joystick centered inside"/>
                                             <p className='plan-name'>Arcade</p>
                                             {isToggleChecked ? (
                                                 <p className='price' id="arcade-price">$90/yr</p>) : (
@@ -155,7 +155,7 @@ export function Plan({ activeStepIndex, setActiveStepIndex, billingType, setBill
                                         </div>
 
                                         <div className='named-plan' id='advanced-plan' onClick={(e) => { setNameOfPlan("Advanced"); billingType === "Monthly" ? setPlanPrice(12) : setPlanPrice(120); }}>
-                                            <img src='/assets/images/icon-advanced.svg' />
+                                            <img src='/assets/images/icon-advanced.svg' alt="pink circle with a remote centered inside"/>
                                             <p className='plan-name'>Advanced</p>
                                             {isToggleChecked ? (
                                                 <p className='price' id="advanced-price">$120/yr</p>) : (
@@ -165,7 +165,7 @@ export function Plan({ activeStepIndex, setActiveStepIndex, billingType, setBill
                                         </div>
 
                                         <div className='named-plan' id='pro-plan' onClick={(e) => { setNameOfPlan("Pro"); billingType === "Monthly" ? setPlanPrice(15) : setPlanPrice(150); }}>
-                                            <img src='/assets/images/icon-pro.svg' />
+                                            <img src='/assets/images/icon-pro.svg' alt="purple circle with a game controller centered inside"/>
                                             <p className='plan-name'>Pro</p>
                                             {isToggleChecked ? (
                                                 <p className='price' id="pro-price">$150/yr</p>) : (

@@ -130,7 +130,7 @@ function ConfirmationComponent({ StepsComponent, activeStepIndex }) {
                         <StepsComponent activeStepIndex={activeStepIndex} />
                         <div className='card-body-right'>
                             <div className='card-body-right-top-summary'>
-                                <img src="images/icon-checkmark.svg" alt="pink circle with a checkmark centered inside"  />
+                                <img src="/assets/images/icon-checkmark.svg" alt="pink circle with a checkmark centered inside"  />
                                 <h1>Thank you!</h1>
                                 <p>
                                     Thanks for confirming your subscription! We hope you have fun using our platform.

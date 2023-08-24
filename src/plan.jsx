@@ -18,17 +18,19 @@ export function Plan({ activeStepIndex, setActiveStepIndex, billingType, setBill
 
     const setMonthlyOrYearly = (val) => {
 
-        const e1 = document.getElementsByClassName("offer");
+        const offerText = document.getElementsByClassName("offer");
+        //if "yearly" option selected
         if (val) {
             setIsToggleChecked(true);
             document.getElementById("yearly-billing").style.color = "hsl(213, 96%, 18%)";
             document.getElementById("monthly-billing").style.color = "hsl(231, 11%, 63%)";
             setBillingType("Yearly");
 
-            for (let i = 0; i < e1.length; i++) {
-                e1[i].style.display = 'inline';
+            for (let i = 0; i < offerText.length; i++) {
+                offerText[i].style.display = 'inline';
             }
 
+            //helps change value of local storage array faster
             switch (planName) {
                 case "Arcade":
                     setPlanPrice(90);
@@ -52,8 +54,8 @@ export function Plan({ activeStepIndex, setActiveStepIndex, billingType, setBill
             document.getElementById("yearly-billing").style.color = "hsl(231, 11%, 63%)";
             setBillingType("Monthly");
 
-            for (let i = 0; i < e1.length; i++) {
-                e1[i].style.display = 'none';
+            for (let i = 0; i < offerText.length; i++) {
+                offerText[i].style.display = 'none';
             }
 
             switch (planName) {
@@ -73,20 +75,25 @@ export function Plan({ activeStepIndex, setActiveStepIndex, billingType, setBill
                     break;
             }
         }
+
+        console.log(`val: ${val}`);
     }
 
     const setNameOfPlan = (name) => {
         switch (name) {
             case "Arcade":
                 setPlanName(name);
+                setIsPlanSelected(true);
                 break;
 
             case "Advanced":
                 setPlanName(name);
+                setIsPlanSelected(true);
                 break;
 
             case "Pro":
                 setPlanName(name);
+                setIsPlanSelected(true);
                 break;
         }
     }

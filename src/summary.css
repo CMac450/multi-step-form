@@ -89,3 +89,16 @@ hr {
     font-weight: 600;
     float: right;
 }
+
+img.thank-you-icon {
+    height: 50px;
+    width: 50px;
+    margin: 0 auto;
+}
+
+.card-body-thank-you {
+    color: hsl(231, 11%, 63%);
+    margin-top: 150px;
+    line-height: 30px;
+    font-size: 16px;
+}

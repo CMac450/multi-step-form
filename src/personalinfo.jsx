@@ -127,7 +127,7 @@ export function PersonalInfo({ activeStepIndex, setActiveStepIndex, StepsCompone
                                 <div className='user-info-error' id="name-error">
                                     <span>Name is required</span>
                                 </div>
-                                <input type='text' id='name' placeholder='e.g. Stephen King' ></input>
+                                <input type='text' id='name' placeholder='e.g. Stephen King' />
 
 
                                 <label htmlFor='email'>Email Address</label>
@@ -137,14 +137,14 @@ export function PersonalInfo({ activeStepIndex, setActiveStepIndex, StepsCompone
                                 <div className='user-info-error' id="email-format-error">
                                     <span>Email must end in '@lorem.com'</span>
                                 </div>
-                                <input type='email' id='email' placeholder='e.g. stephenking@lorem.com'></input>
+                                <input type='email' id='email' placeholder='e.g. stephenking@lorem.com'/>
 
 
                                 <label htmlFor='phone'>Phone Number</label>
                                 <div className='user-info-error' id="phone-error">
                                     <span>Phone is required</span>
                                 </div>
-                                <input type='tel' id='phone' placeholder='e.g. +1 234 567 890'></input>
+                                <input type='tel' id='phone' placeholder='e.g. +1 234 567 890' maxLength={13}/>
 
 
                             </div>

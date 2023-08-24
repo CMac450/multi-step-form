@@ -144,7 +144,7 @@ export function PersonalInfo({ activeStepIndex, setActiveStepIndex, StepsCompone
                                 <div className='user-info-error' id="phone-error">
                                     <span>Phone is required</span>
                                 </div>
-                                <input type='tel' id='phone' placeholder='e.g. +1 234 567 890' maxLength={13}/>
+                                <input type='tel' id='phone' placeholder='e.g. +1 234 567 890' maxLength={15}/>
 
 
                             </div>

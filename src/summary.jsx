@@ -110,8 +110,8 @@ function SummaryComponent({ StepsComponent, activeStepIndex, setActiveStepIndex,
                                 </div>
                             </div>
                             <div className='card-body-right-bottom'>
-                                <button className='prev-step-btn' label='Next Step' onClick={(e) => { goBackToPreviousStep(activeStepIndex) }}>Go Back</button>
-                                <button className='confirm-btn' label='Next Step' onClick={(e) => { setShowConfirmation(true) }}>Confirm</button>
+                                <button className='prev-step-btn' onClick={(e) => { goBackToPreviousStep(activeStepIndex) }}>Go Back</button>
+                                <button className='confirm-btn'onClick={(e) => { setShowConfirmation(true) }}>Confirm</button>
                             </div>
                         </div>
                     </div>

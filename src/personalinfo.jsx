@@ -149,7 +149,7 @@ export function PersonalInfo({ activeStepIndex, setActiveStepIndex, StepsCompone
 
                             </div>
                             <div className='card-body-right-bottom'>
-                                <button className='next-step-btn' label='Next Step' onClick={(e) => { isFormValid ? moveToNextStep(activeStepIndex) : validateInput(e); }}>Next Step</button>
+                                <button className='next-step-btn' onClick={(e) => { isFormValid ? moveToNextStep(activeStepIndex) : validateInput(e); }}>Next Step</button>
                             </div>
                         </div>
                     </div>

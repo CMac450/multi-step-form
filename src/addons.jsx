@@ -313,8 +313,8 @@ export function Addons({ activeStepIndex, setActiveStepIndex, billingType, Steps
 
                             </div>
                             <div className='card-body-right-bottom'>
-                                <button className='prev-step-btn' label='Next Step' onClick={(e) => { goBackToPreviousStep(activeStepIndex) }}>Go back</button>
-                                <button className='next-step-btn' label='Next Step' onClick={(e) => { moveToNextStep(activeStepIndex) }}>Next Step</button>
+                                <button className='prev-step-btn' onClick={(e) => { goBackToPreviousStep(activeStepIndex) }}>Go back</button>
+                                <button className='next-step-btn' onClick={(e) => { moveToNextStep(activeStepIndex) }}>Next Step</button>
                             </div>
                         </div>
                     </div>

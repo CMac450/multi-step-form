@@ -199,8 +199,8 @@ export function Plan({ activeStepIndex, setActiveStepIndex, billingType, setBill
                                 <></>
                             )}
                             <div className='card-body-right-bottom'>
-                                <button className='prev-step-btn' label='Next Step' onClick={(e) => { goBackToPreviousStep(activeStepIndex) }}>Go back</button>
-                                <button className='next-step-btn' label='Next Step' onClick={(e) => { isPlanSelected ? moveToNextStep(activeStepIndex) : setShowSelectionError(true) }}>Next Step</button>
+                                <button className='prev-step-btn' onClick={(e) => { goBackToPreviousStep(activeStepIndex) }}>Go back</button>
+                                <button className='next-step-btn' onClick={(e) => { isPlanSelected ? moveToNextStep(activeStepIndex) : setShowSelectionError(true) }}>Next Step</button>
                             </div>
                         </div>
                     </div>
